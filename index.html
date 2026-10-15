@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop Pack Thẻ · Đăng nhập</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=mail" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=payments" />
 <style>
     * {
         margin: 0;
@@ -106,9 +107,7 @@
         background: linear-gradient(145deg, #ffd966, #fbbf24);
     }
 
-    .login-btn:active {
-        transform: scale(0.98);
-    }
+    .login-btn:active { transform: scale(0.98); }
 
     /* ========================
        GIAO DIỆN CHÍNH
@@ -131,6 +130,7 @@
         top: 0;
         z-index: 50;
         box-shadow: 0 8px 20px -10px black;
+        gap: 1rem;
     }
 
     .topbar-logo {
@@ -143,10 +143,64 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        white-space: nowrap;
     }
 
-    .topbar-logo span {
-        font-size: 1.5rem;
+    .topbar-logo span { font-size: 1.5rem; }
+
+    .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    /* ========== VÍ TIỀN ========== */
+    .wallet {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(145deg, #1a2237, #141b2e);
+        border: 2px solid #2d3b5a;
+        padding: 0.5rem 1.1rem;
+        border-radius: 40px;
+        box-shadow: 0 8px 18px -8px black, 0 0 0 1px #ffffff08 inset;
+        transition: all 0.2s;
+    }
+
+    .wallet:hover {
+        border-color: #fbbf24;
+        box-shadow: 0 8px 18px -8px black, 0 0 15px #fbbf2433;
+    }
+
+    .wallet .material-symbols-outlined {
+        font-size: 22px;
+        color: #fbbf24;
+        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .wallet-amount {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: #fde047;
+        letter-spacing: 0.5px;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .wallet-currency {
+        font-size: 0.8rem;
+        color: #94a3b8;
+        font-weight: 500;
+    }
+
+    /* Hiệu ứng khi tiền thay đổi */
+    .wallet.flash {
+        animation: walletFlash 0.6s ease;
+    }
+
+    @keyframes walletFlash {
+        0% { box-shadow: 0 0 0 0 #fbbf24; border-color: #fbbf24; }
+        50% { box-shadow: 0 0 25px 5px #fbbf24aa; border-color: #fbbf24; }
+        100% { box-shadow: 0 0 0 0 #fbbf2400; }
     }
 
     .logout-btn {
@@ -185,7 +239,6 @@
         flex-shrink: 0;
     }
 
-    /* Khung hồ sơ */
     .profile-card {
         background: linear-gradient(145deg, #1a2237, #141b2e);
         border-radius: 1.5rem;
@@ -196,7 +249,6 @@
         position: relative;
     }
 
-    /* Khung vuông chứa avatar */
     .avatar-square {
         width: 120px;
         height: 120px;
@@ -211,7 +263,6 @@
         box-shadow: 0 0 20px #fbbf2440;
     }
 
-    /* Avatar hình tròn */
     .avatar-circle {
         width: 90px;
         height: 90px;
@@ -228,9 +279,7 @@
         transition: transform 0.2s;
     }
 
-    .avatar-circle:hover {
-        transform: scale(1.05);
-    }
+    .avatar-circle:hover { transform: scale(1.05); }
 
     .profile-name {
         font-weight: 700;
@@ -267,7 +316,7 @@
     .mail-btn-wrapper {
         display: flex;
         justify-content: center;
-        margin-top: 1rem;
+        margin-top: 0.5rem;
         padding-top: 1rem;
         border-top: 1px dashed #2d3b5a;
     }
@@ -295,9 +344,7 @@
         box-shadow: 0 12px 22px -8px #fbbf24aa, 0 0 0 1px #fbbf2444 inset;
     }
 
-    .mail-btn:active {
-        transform: scale(0.96);
-    }
+    .mail-btn:active { transform: scale(0.96); }
 
     .mail-btn .material-symbols-outlined {
         font-size: 26px;
@@ -309,7 +356,6 @@
         font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
     }
 
-    /* Chấm đỏ thông báo */
     .mail-badge {
         position: absolute;
         top: -3px;
@@ -334,8 +380,6 @@
         0%, 100% { transform: scale(1); }
         50% { transform: scale(1.15); }
     }
-
-    /* ====================================== */
 
     /* Menu sidebar */
     .sidebar-menu {
@@ -393,6 +437,52 @@
         font-size: 1rem;
     }
 
+    /* ========== THÔNG BÁO CHƯA CÓ PACK ========== */
+    .empty-state {
+        background: #0f1422;
+        border-radius: 2rem;
+        padding: 3rem 2rem;
+        text-align: center;
+        border: 2px dashed #2d3b5a;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .empty-icon {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: #1a2237;
+        border: 2px dashed #334155;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        color: #4b5568;
+    }
+
+    .empty-state h2 {
+        color: #cbd5e1;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    .empty-state p {
+        color: #64748b;
+        font-size: 0.95rem;
+        max-width: 400px;
+    }
+
+    .empty-state .material-symbols-outlined {
+        font-size: 40px;
+        color: #fbbf24;
+        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* Lưới pack */
     .pack-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -435,9 +525,7 @@
         transition: transform 0.2s;
     }
 
-    .pack-card:hover .pack-img {
-        transform: scale(1.05);
-    }
+    .pack-card:hover .pack-img { transform: scale(1.05); }
 
     .pack-name {
         font-weight: 600;
@@ -571,9 +659,17 @@
         box-shadow: 0 10px 18px -8px #fbbf24aa;
         border: 1px solid #ffd966;
         align-self: flex-start;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
 
-    .buy-btn:hover {
+    .buy-btn .material-symbols-outlined {
+        font-size: 18px;
+        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 20;
+    }
+
+    .buy-btn:hover:not(:disabled) {
         transform: scale(1.02);
         background: linear-gradient(145deg, #ffd966, #fbbf24);
         box-shadow: 0 15px 25px -10px #fbbf24;
@@ -630,14 +726,8 @@
             margin-left: auto;
         }
 
-        .mail-btn {
-            width: 46px;
-            height: 46px;
-        }
-
-        .mail-btn .material-symbols-outlined {
-            font-size: 22px;
-        }
+        .mail-btn { width: 46px; height: 46px; }
+        .mail-btn .material-symbols-outlined { font-size: 22px; }
 
         .sidebar-menu {
             flex-direction: row;
@@ -650,6 +740,13 @@
         .rate-info { text-align: center; align-items: center; }
         .rate-badge-list { justify-content: center; }
         .buy-btn { align-self: center; }
+
+        .topbar { padding: 0.7rem 1rem; gap: 0.5rem; }
+        .topbar-logo { font-size: 1rem; }
+        .topbar-logo span { font-size: 1.2rem; }
+        .wallet { padding: 0.4rem 0.8rem; }
+        .wallet-amount { font-size: 0.9rem; }
+        .logout-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
     }
 
     @media (max-width: 500px) {
@@ -677,13 +774,20 @@
         <div class="topbar-logo">
             <span>🃏</span> PACK THẺ ẢO DIỆU
         </div>
-        <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
+        <div class="topbar-right">
+            <!-- ⭐ VÍ TIỀN ⭐ -->
+            <div class="wallet" id="wallet">
+                <span class="material-symbols-outlined">payments</span>
+                <span class="wallet-amount" id="walletAmount">50.000</span>
+                <span class="wallet-currency">đ</span>
+            </div>
+            <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
+        </div>
     </header>
 
     <div class="layout">
         <!-- ==== SIDEBAR TRÁI ==== -->
         <aside class="sidebar">
-            <!-- Khung hồ sơ -->
             <div class="profile-card">
                 <div class="avatar-square">
                     <div class="avatar-circle" id="avatarCircle">?</div>
@@ -695,7 +799,7 @@
                 </div>
             </div>
 
-            <!-- ⭐ NÚT HỘP THƯ HÌNH TRÒN MỚI ⭐ -->
+            <!-- Nút hộp thư -->
             <div class="mail-btn-wrapper">
                 <button class="mail-btn" id="mailBtn" title="Hộp thư">
                     <span class="material-symbols-outlined">mail</span>
@@ -703,7 +807,6 @@
                 </button>
             </div>
 
-            <!-- Menu -->
             <nav class="sidebar-menu">
                 <div class="menu-item active">🏠 Trang chủ</div>
                 <div class="menu-item">📦 Kho pack</div>
@@ -715,31 +818,41 @@
         <!-- ==== NỘI DUNG CHÍNH ==== -->
         <main class="main-content">
             <h1>✨ Cửa hàng Pack Thẻ</h1>
-            <p class="subtitle">Ấn vào pack để xem khung hình & tỉ lệ ra thẻ</p>
+            <p class="subtitle">Mua pack để bắt đầu sưu tầm thẻ</p>
 
+            <!-- ========== KHI CHƯA CÓ PACK ========== -->
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon">📦</div>
+                <h2>Bạn chưa có Pack Thẻ nào</h2>
+                <p>Hãy mua pack bên dưới để bắt đầu. Bạn đang có <strong style="color:#fbbf24;">50.000đ</strong> trong ví!</p>
+                <span class="material-symbols-outlined">payments</span>
+            </div>
+
+            <!-- ========== LƯỚI PACK ĐỂ MUA ========== -->
             <div class="pack-grid" id="packGrid">
-                <div class="pack-card" data-pack="pack1" data-name="Khởi Đầu" data-rate="Thường: 70% · Hiếm: 25% · Sử thi: 4.5% · Huyền thoại: 0.5%">
+                <div class="pack-card" data-pack="pack1" data-name="Khởi Đầu" data-price="50000" data-rate="Thường: 70% · Hiếm: 25% · Sử thi: 4.5% · Huyền thoại: 0.5%">
                     <img class="pack-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232d3748'/%3E%3Cpath d='M30 40 L70 40 L70 70 L50 85 L30 70 Z' fill='%23fbbf24' opacity='0.8'/%3E%3Ccircle cx='50' cy='45' r='12' fill='%23ffd966'/%3E%3Ctext x='50' y='92' font-size='12' fill='%23a0aec0' text-anchor='middle' font-family='Arial'%3EPACK I%3C/text%3E%3C/svg%3E" alt="Pack Khởi Đầu">
                     <div class="pack-name">Khởi Đầu</div>
                     <div class="pack-price">50.000đ</div>
                 </div>
-                <div class="pack-card" data-pack="pack2" data-name="Tinh Hoa" data-rate="Thường: 40% · Hiếm: 45% · Sử thi: 12% · Huyền thoại: 3%">
+                <div class="pack-card" data-pack="pack2" data-name="Tinh Hoa" data-price="120000" data-rate="Thường: 40% · Hiếm: 45% · Sử thi: 12% · Huyền thoại: 3%">
                     <img class="pack-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%234a3b6b'/%3E%3Cpath d='M30 35 L70 35 L70 65 L50 80 L30 65 Z' fill='%23b794f4' opacity='0.9'/%3E%3Cpath d='M45 45 L55 45 L60 55 L50 65 L40 55 Z' fill='%23e9d8fd'/%3E%3Ctext x='50' y='92' font-size='12' fill='%23cbd5e1' text-anchor='middle' font-family='Arial'%3EPACK II%3C/text%3E%3C/svg%3E" alt="Pack Tinh Hoa">
                     <div class="pack-name">Tinh Hoa</div>
                     <div class="pack-price">120.000đ</div>
                 </div>
-                <div class="pack-card" data-pack="pack3" data-name="Vô Cực" data-rate="Thường: 15% · Hiếm: 40% · Sử thi: 35% · Huyền thoại: 10%">
+                <div class="pack-card" data-pack="pack3" data-name="Vô Cực" data-price="250000" data-rate="Thường: 15% · Hiếm: 40% · Sử thi: 35% · Huyền thoại: 10%">
                     <img class="pack-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f2b3a'/%3E%3Cpolygon points='50,20 75,40 68,75 32,75 25,40' fill='%2338bdf8' opacity='0.8'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%237dd3fc'/%3E%3Ctext x='50' y='92' font-size='12' fill='%2394a3b8' text-anchor='middle' font-family='Arial'%3EPACK III%3C/text%3E%3C/svg%3E" alt="Pack Vô Cực">
                     <div class="pack-name">Vô Cực</div>
                     <div class="pack-price">250.000đ</div>
                 </div>
-                <div class="pack-card" data-pack="pack4" data-name="Thần Thoại" data-rate="Thường: 5% · Hiếm: 25% · Sử thi: 45% · Huyền thoại: 25%">
+                <div class="pack-card" data-pack="pack4" data-name="Thần Thoại" data-price="500000" data-rate="Thường: 5% · Hiếm: 25% · Sử thi: 45% · Huyền thoại: 25%">
                     <img class="pack-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23221d3d'/%3E%3Cpath d='M50 15 L70 30 L70 60 L50 80 L30 60 L30 30 Z' fill='%23f472b6' opacity='0.9'/%3E%3Cpath d='M50 35 L60 45 L55 60 L45 60 L40 45 Z' fill='%23fbcfe8'/%3E%3Ctext x='50' y='92' font-size='12' fill='%23f9a8d4' text-anchor='middle' font-family='Arial'%3EPACK IV%3C/text%3E%3C/svg%3E" alt="Pack Thần Thoại">
                     <div class="pack-name">Thần Thoại</div>
                     <div class="pack-price">500.000đ</div>
                 </div>
             </div>
 
+            <!-- Khung xem trước pack + tỉ lệ -->
             <div class="reveal-panel" id="revealPanel">
                 <div class="preview-square" id="previewSquare">
                     <img id="previewImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e2538'/%3E%3Ctext x='50' y='58' font-size='28' fill='%234b5568' text-anchor='middle' font-family='Arial'%3E%3F%3C/text%3E%3C/svg%3E" alt="Chưa chọn pack">
@@ -750,7 +863,10 @@
                     <div class="rate-badge-list" id="rateBadgeList">
                         <div class="placeholder-text" style="padding:0.3rem 0;">Ấn vào pack để xem chi tiết</div>
                     </div>
-                    <button class="buy-btn" id="buyBtn" disabled>Mua pack</button>
+                    <button class="buy-btn" id="buyBtn" disabled>
+                        <span class="material-symbols-outlined">payments</span>
+                        Mua pack
+                    </button>
                 </div>
             </div>
         </main>
@@ -759,7 +875,11 @@
 
 <script>
 (function() {
-    // ========== XỬ LÝ ĐĂNG NHẬP ==========
+    // ========== BIẾN TOÀN CỤC ==========
+    let walletBalance = 50000; // 50.000đ ban đầu
+    let ownedPacks = []; // Danh sách pack đã sở hữu (ban đầu rỗng)
+
+    // ========== LẤY PHẦN TỬ ==========
     const loginScreen = document.getElementById('loginScreen');
     const mainApp = document.getElementById('mainApp');
     const loginBtn = document.getElementById('loginBtn');
@@ -767,7 +887,34 @@
     const avatarCircle = document.getElementById('avatarCircle');
     const profileName = document.getElementById('profileName');
     const profileId = document.getElementById('profileId');
+    const walletEl = document.getElementById('wallet');
+    const walletAmount = document.getElementById('walletAmount');
+    const emptyState = document.getElementById('emptyState');
+    const packCards = document.querySelectorAll('.pack-card');
+    const previewSquare = document.getElementById('previewSquare');
+    const previewImage = document.getElementById('previewImage');
+    const rateName = document.getElementById('rateName');
+    const rateBadgeList = document.getElementById('rateBadgeList');
+    const buyBtn = document.getElementById('buyBtn');
+    const mailBtn = document.getElementById('mailBtn');
+    const mailBadge = document.getElementById('mailBadge');
 
+    // ========== HÀM ĐỊNH DẠNG TIỀN ==========
+    function formatMoney(amount) {
+        return amount.toLocaleString('vi-VN');
+    }
+
+    // ========== CẬP NHẬT VÍ ==========
+    function updateWallet(animate = true) {
+        walletAmount.textContent = formatMoney(walletBalance);
+        if (animate) {
+            walletEl.classList.remove('flash');
+            void walletEl.offsetWidth; // Trigger reflow
+            walletEl.classList.add('flash');
+        }
+    }
+
+    // ========== RANDOM NAME/ID ==========
     function generateRandomId() {
         const chars = 'ABCDEF0123456789';
         let id = '';
@@ -782,6 +929,7 @@
 
     function getInitial(name) { return name.charAt(0).toUpperCase(); }
 
+    // ========== ĐĂNG NHẬP ==========
     loginBtn.addEventListener('click', function() {
         const randomName = generateRandomName();
         const randomId = generateRandomId();
@@ -791,8 +939,14 @@
         loginScreen.style.display = 'none';
         mainApp.style.display = 'block';
         window.scrollTo(0, 0);
+
+        // Reset tiền & pack khi đăng nhập mới
+        walletBalance = 50000;
+        ownedPacks = [];
+        updateWallet(false);
     });
 
+    // ========== ĐĂNG XUẤT ==========
     logoutBtn.addEventListener('click', function() {
         mainApp.style.display = 'none';
         loginScreen.style.display = 'flex';
@@ -802,27 +956,18 @@
         rateName.textContent = '— Chưa chọn —';
         rateBadgeList.innerHTML = '<div class="placeholder-text" style="padding:0.3rem 0;">Ấn vào pack để xem chi tiết</div>';
         buyBtn.disabled = true;
+        // Hiện lại empty state
+        emptyState.style.display = 'flex';
     });
 
-    // ========== XỬ LÝ NÚT HỘP THƯ ==========
-    const mailBtn = document.getElementById('mailBtn');
-    const mailBadge = document.getElementById('mailBadge');
-
+    // ========== HỘP THƯ ==========
     mailBtn.addEventListener('click', function() {
         const count = mailBadge ? mailBadge.textContent : '0';
         alert(`📬 HỘP THƯ\n\nBạn có ${count} tin nhắn mới!\n(Đây là demo chức năng hộp thư.)`);
-        // Xoá badge sau khi mở
         if (mailBadge) mailBadge.style.display = 'none';
     });
 
-    // ========== XỬ LÝ PACK THẺ ==========
-    const packCards = document.querySelectorAll('.pack-card');
-    const previewSquare = document.getElementById('previewSquare');
-    const previewImage = document.getElementById('previewImage');
-    const rateName = document.getElementById('rateName');
-    const rateBadgeList = document.getElementById('rateBadgeList');
-    const buyBtn = document.getElementById('buyBtn');
-
+    // ========== PACK: HIỂN THỊ TỈ LỆ ==========
     function renderRateBadges(rateString) {
         const parts = rateString.split('·').map(s => s.trim());
         if (!parts.length) return '<div class="placeholder-text">Không có dữ liệu</div>';
@@ -861,14 +1006,49 @@
         card.addEventListener('click', function() { handlePackClick(this); });
     });
 
+    // ========== MUA PACK ==========
     buyBtn.addEventListener('click', function() {
         if (buyBtn.disabled) return;
         const currentPack = document.querySelector('.pack-card.selected');
-        if (currentPack) {
-            const packName = currentPack.dataset.name || 'pack';
-            alert(`🎉 Bạn đã chọn mua pack "${packName}"!\n(Đây là demo, chưa có thanh toán thực tế.)`);
+        if (!currentPack) return;
+
+        const packName = currentPack.dataset.name || 'pack';
+        const packPrice = parseInt(currentPack.dataset.price || '0', 10);
+
+        // Kiểm tra đủ tiền
+        if (walletBalance < packPrice) {
+            alert(`❌ Bạn không đủ tiền!\n\nCần: ${formatMoney(packPrice)}đ\nHiện có: ${formatMoney(walletBalance)}đ\n\nHãy nạp thêm tiền hoặc chọn pack rẻ hơn.`);
+            return;
         }
+
+        // Trừ tiền
+        walletBalance -= packPrice;
+        updateWallet(true);
+
+        // Thêm vào danh sách sở hữu
+        ownedPacks.push({
+            name: packName,
+            price: packPrice,
+            rate: currentPack.dataset.rate
+        });
+
+        // Ẩn empty state
+        emptyState.style.display = 'none';
+
+        // Thông báo
+        alert(`🎉 Mua thành công pack "${packName}"!\n\nĐã trừ: ${formatMoney(packPrice)}đ\nSố dư còn lại: ${formatMoney(walletBalance)}đ\n\nBạn hiện có ${ownedPacks.length} pack trong kho.`);
+
+        // Reset lựa chọn
+        currentPack.classList.remove('selected');
+        previewSquare.classList.remove('active');
+        previewImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e2538'/%3E%3Ctext x='50' y='58' font-size='28' fill='%234b5568' text-anchor='middle' font-family='Arial'%3E%3F%3C/text%3E%3C/svg%3E";
+        rateName.textContent = '— Chưa chọn —';
+        rateBadgeList.innerHTML = '<div class="placeholder-text" style="padding:0.3rem 0;">Ấn vào pack để xem chi tiết</div>';
+        buyBtn.disabled = true;
     });
+
+    // Khởi tạo ví ban đầu
+    updateWallet(false);
 })();
 </script>
 </body>
