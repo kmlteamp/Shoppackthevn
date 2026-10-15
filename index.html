@@ -1,2056 +1,587 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shop Pack Thẻ · Đăng nhập</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=mail" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=payments" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_cart" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=settings" />
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUA PACK THẺ – Shop online</title>
+  <!-- Font Awesome 5 (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
     * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 
     body {
-        background: #0b0f1c;
-        min-height: 100vh;
-        color: #e2e8f0;
-        overflow-x: hidden;
+      background-color: #ffffff;
+      color: #1e1e2f;
+      line-height: 1.5;
     }
 
-    /* ========================
-       MÀN HÌNH ĐĂNG NHẬP
-    ======================== */
-    #loginScreen {
-        position: fixed;
-        inset: 0;
-        background: radial-gradient(circle at 20% 20%, #1e2a4a, #0b0f1c 70%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 100;
-        padding: 1rem;
+    /* tổng thể container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
-    .login-box {
-        background: linear-gradient(145deg, #161c2e, #101624);
-        border-radius: 2rem;
-        padding: 3rem 2.5rem;
-        width: 100%;
-        max-width: 420px;
-        text-align: center;
-        border: 2px solid #2d3b5a;
-        box-shadow: 0 30px 60px -20px black, 0 0 0 1px #ffffff08 inset;
-        animation: fadeUp 0.6s ease;
+    /* HEADER + THANH ĐIỀU HƯỚNG */
+    header {
+      background: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      border-bottom: 1px solid #f0f0f5;
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
 
-    @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
     }
 
-    .login-logo {
-        width: 90px;
-        height: 90px;
-        margin: 0 auto 1.5rem;
-        background: linear-gradient(135deg, #fbbf24, #e6a017);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        box-shadow: 0 10px 30px -8px #fbbf24aa;
-        animation: pulse 2.5s infinite alternate;
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #1e1e2f 0%, #3a3a5a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    @keyframes pulse {
-        from { transform: scale(1); }
-        to { transform: scale(1.06); }
+    .logo i {
+      background: linear-gradient(135deg, #3b3b5c, #1e1e2f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 28px;
     }
 
-    .login-box h2 {
-        font-size: 1.9rem;
-        margin-bottom: 0.5rem;
-        background: linear-gradient(135deg, #f9e8a2, #ffc857);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-weight: 500;
+      color: #2e2e3f;
     }
 
-    .login-box p {
-        color: #94a3b8;
-        margin-bottom: 2rem;
-        font-size: 0.95rem;
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+      font-size: 16px;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .login-btn {
-        width: 100%;
-        padding: 1rem;
-        border: none;
-        border-radius: 60px;
-        background: linear-gradient(145deg, #fbbf24, #e6a017);
-        color: #0a0e16;
-        font-size: 1.1rem;
-        font-weight: 700;
-        cursor: pointer;
-        letter-spacing: 1px;
-        transition: all 0.2s;
-        box-shadow: 0 10px 20px -8px #fbbf24cc;
+    .nav-links a:hover {
+      color: #000;
     }
 
-    .login-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 15px 25px -8px #fbbf24;
-        background: linear-gradient(145deg, #ffd966, #fbbf24);
+    .nav-links a i {
+      font-size: 14px;
+      opacity: 0.7;
     }
 
-    .login-btn:active { transform: scale(0.98); }
-
-    /* ========================
-       GIAO DIỆN CHÍNH
-    ======================== */
-    #mainApp {
-        display: none;
-        min-height: 100vh;
-        background: linear-gradient(145deg, #0b0f1c 0%, #1a1f2f 100%);
-        padding-bottom: 100px;
+    /* khu vực tiền + hồ sơ */
+    .wallet-profile {
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
 
-    .topbar {
-        background: #0f1422;
-        border-bottom: 1px solid #1e2a44;
-        padding: 0.9rem 1.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        box-shadow: 0 8px 20px -10px black;
-        gap: 1rem;
+    .wallet-badge {
+      background: #f8f9fc;
+      border-radius: 40px;
+      padding: 8px 18px 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #e9e9f2;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s;
     }
 
-    .topbar-logo {
-        font-size: 1.3rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, #f9e8a2, #ffc857);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        white-space: nowrap;
+    .wallet-badge i {
+      color: #10b981;
+      font-size: 18px;
     }
 
-    .topbar-logo span { font-size: 1.5rem; }
-
-    .topbar-right {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
+    .wallet-badge .balance {
+      font-weight: 700;
+      color: #1e1e2f;
+      font-size: 16px;
+      letter-spacing: -0.2px;
     }
 
-    .logout-btn {
-        background: #1e2538;
-        color: #cbd5e1;
-        border: 1px solid #334155;
-        padding: 0.5rem 1.2rem;
-        border-radius: 40px;
-        cursor: pointer;
-        font-size: 0.85rem;
-        font-weight: 600;
-        transition: all 0.2s;
+    .wallet-badge .currency {
+      font-size: 13px;
+      color: #6b6b84;
+      font-weight: 500;
+      margin-left: 2px;
     }
 
-    .logout-btn:hover {
-        background: #2d3748;
-        color: #fbbf24;
-        border-color: #fbbf24;
+    .profile-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      padding: 6px 12px 6px 6px;
+      border-radius: 40px;
+      border: 1px solid #e9e9f2;
+      transition: all 0.15s;
+      cursor: default;
     }
 
-    .layout {
-        display: flex;
-        min-height: calc(100vh - 60px);
+    .profile-btn:hover {
+      background: #fafafd;
+      border-color: #d0d0dd;
     }
 
-    /* ==== SIDEBAR TRÁI ==== */
-    .sidebar {
-        width: 280px;
-        background: #0f1422;
-        border-right: 1px solid #1e2a44;
-        padding: 1.8rem 1.2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        flex-shrink: 0;
+    .avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(145deg, #c7d2fe, #a5b4fc);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e1e2f;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
-    .profile-card {
-        background: linear-gradient(145deg, #1a2237, #141b2e);
-        border-radius: 1.5rem;
-        padding: 1.5rem 1rem;
-        text-align: center;
-        border: 1px solid #2d3b5a;
-        box-shadow: 0 12px 25px -12px black;
-        position: relative;
+    .profile-info {
+      line-height: 1.2;
+      text-align: left;
     }
-
-    .avatar-square {
-        width: 120px;
-        height: 120px;
-        margin: 0 auto 1rem;
-        background: #1e2538;
-        border-radius: 1.2rem;
-        border: 3px solid #fbbf24;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        box-shadow: 0 0 20px #fbbf2440;
-    }
-
-    .avatar-circle {
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        background: linear-gradient(145deg, #fbbf24, #e6a017);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: #0a0e16;
-        border: 3px solid #ffffff22;
-        box-shadow: 0 8px 20px -5px black;
-        transition: transform 0.2s;
-    }
-
-    .avatar-circle:hover { transform: scale(1.05); }
 
     .profile-name {
-        font-weight: 700;
-        font-size: 1.15rem;
-        color: #f1f5f9;
-        margin-bottom: 0.25rem;
+      font-weight: 700;
+      font-size: 15px;
+      color: #1e1e2f;
     }
 
-    .profile-id {
-        font-size: 0.78rem;
-        color: #94a3b8;
-        background: #1e2538;
-        padding: 0.3rem 0.9rem;
-        border-radius: 40px;
-        display: inline-block;
-        font-family: 'Courier New', monospace;
-        letter-spacing: 1px;
-        border: 1px solid #2d3b5a;
+    .profile-role {
+      font-size: 12px;
+      color: #7e7e9a;
+      font-weight: 500;
+      letter-spacing: 0.2px;
     }
 
-    .status-dot {
-        position: absolute;
-        bottom: 8px;
-        right: 8px;
-        width: 14px;
-        height: 14px;
-        background: #22c55e;
-        border-radius: 50%;
-        border: 3px solid #1a2237;
-        box-shadow: 0 0 10px #22c55e;
+    /* HERO / TIÊU ĐỀ */
+    .hero {
+      padding: 40px 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
     }
 
-    .money-badge {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        background: linear-gradient(145deg, #fbbf24, #e6a017);
-        border: 2px solid #0f1422;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        box-shadow: 0 6px 14px -4px #fbbf24cc, 0 0 0 2px #fbbf2433;
-        transition: all 0.25s ease;
-        z-index: 3;
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: #0e0e1a;
     }
 
-    .money-badge:hover {
-        transform: scale(1.12) rotate(-6deg);
-        box-shadow: 0 8px 18px -4px #fbbf24, 0 0 15px #fbbf2488;
+    .hero p {
+      color: #6b6b84;
+      font-size: 16px;
+      margin-top: 8px;
+      font-weight: 400;
     }
 
-    .money-badge:active { transform: scale(0.95); }
-
-    .money-badge .material-symbols-outlined {
-        font-size: 20px;
-        color: #0a0e16;
-        font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    .filter-tabs {
+      display: flex;
+      gap: 12px;
+      background: #f8f9fc;
+      padding: 6px;
+      border-radius: 48px;
+      border: 1px solid #f0f0f5;
     }
 
-    .money-tooltip {
-        position: absolute;
-        top: 50%;
-        right: calc(100% + 10px);
-        transform: translateY(-50%);
-        background: #0a0e16;
-        color: #fde047;
-        font-size: 0.72rem;
-        font-weight: 700;
-        padding: 0.3rem 0.7rem;
-        border-radius: 8px;
-        border: 1px solid #fbbf2455;
-        white-space: nowrap;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.2s;
-        box-shadow: 0 4px 12px #000000aa;
-        z-index: 10;
+    .filter-tabs span {
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #4a4a60;
+      cursor: default;
+      transition: 0.15s;
+      background: transparent;
     }
 
-    .money-badge:hover .money-tooltip { opacity: 1; }
-
-    .mail-btn-wrapper {
-        display: flex;
-        justify-content: center;
-        margin-top: 0.5rem;
-        padding-top: 1rem;
-        border-top: 1px dashed #2d3b5a;
+    .filter-tabs span.active {
+      background: white;
+      color: #1e1e2f;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      border: 1px solid #ececf5;
     }
 
-    .mail-btn {
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        background: linear-gradient(145deg, #1e2538, #161c2e);
-        border: 2px solid #334155;
-        color: #cbd5e1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        position: relative;
-        box-shadow: 0 8px 18px -6px black, 0 0 0 1px #ffffff08 inset;
+    /* GRID SẢN PHẨM */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      padding: 32px 0 60px;
     }
 
-    .mail-btn:hover {
-        border-color: #fbbf24;
-        color: #fbbf24;
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 12px 22px -8px #fbbf24aa, 0 0 0 1px #fbbf2444 inset;
+    .product-card {
+      background: white;
+      border-radius: 24px;
+      border: 1px solid #f0f0f5;
+      padding: 20px 18px 22px;
+      box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    .mail-btn:active { transform: scale(0.96); }
-
-    .mail-btn .material-symbols-outlined {
-        font-size: 26px;
-        font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
-        transition: font-variation-settings 0.2s;
+    .product-card:hover {
+      box-shadow: 0 24px 36px -12px rgba(0, 0, 0, 0.08);
+      border-color: #e0e0ee;
+      transform: translateY(-2px);
     }
 
-    .mail-btn:hover .material-symbols-outlined {
-        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    .card-icon {
+      width: 64px;
+      height: 64px;
+      background: #f4f6fe;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #1e1e2f;
+      margin-bottom: 18px;
+      border: 1px solid #eaeefb;
     }
 
-    .mail-badge {
-        position: absolute;
-        top: -3px;
-        right: -3px;
-        min-width: 20px;
-        height: 20px;
-        padding: 0 5px;
-        background: #ef4444;
-        color: #fff;
-        border-radius: 40px;
-        font-size: 0.7rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid #0f1422;
-        box-shadow: 0 0 10px #ef444488;
-        animation: badgePulse 1.8s infinite;
+    .product-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #0e0e1a;
+      margin-bottom: 6px;
     }
 
-    @keyframes badgePulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.15); }
+    .product-desc {
+      font-size: 14px;
+      color: #72728b;
+      margin-bottom: 18px;
+      line-height: 1.4;
+      min-height: 40px;
     }
 
-    .sidebar-menu {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 6px;
+      margin-bottom: 18px;
     }
 
-    .menu-item {
-        padding: 0.75rem 1rem;
-        border-radius: 0.8rem;
-        color: #cbd5e1;
-        font-weight: 500;
-        font-size: 0.92rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        cursor: pointer;
-        transition: all 0.2s;
-        border: 1px solid transparent;
+    .price {
+      font-weight: 800;
+      font-size: 22px;
+      color: #1e1e2f;
+      letter-spacing: -0.5px;
     }
 
-    .menu-item:hover {
-        background: #1a2237;
-        color: #fbbf24;
-        border-color: #2d3b5a;
+    .price small {
+      font-size: 14px;
+      font-weight: 500;
+      color: #6b6b84;
+      margin-left: 2px;
     }
 
-    .menu-item.active {
-        background: #1e2538;
-        color: #fbbf24;
-        border-color: #fbbf2455;
-        box-shadow: 0 0 0 1px #fbbf2422;
+    .badge {
+      background: #f0fdf4;
+      color: #10b981;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 40px;
+      border: 1px solid #d1fae5;
     }
 
-    .menu-item .material-symbols-outlined {
-        font-size: 20px;
-        color: inherit;
-        font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
-        transition: font-variation-settings 0.25s, transform 0.25s;
+    .btn-buy {
+      background: #1e1e2f;
+      color: white;
+      border: none;
+      padding: 12px 0;
+      width: 100%;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: default;
+      transition: background 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      letter-spacing: 0.2px;
     }
 
-    .menu-item:hover .material-symbols-outlined,
-    .menu-item.active .material-symbols-outlined {
-        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    .btn-buy i {
+      font-size: 14px;
     }
 
-    .menu-item:hover .material-symbols-outlined {
-        transform: rotate(60deg);
+    /* Nút mua có thể nhấn – nhưng để tĩnh, chúng ta chỉ demo giao diện */
+    .btn-buy:hover {
+      background: #2d2d44;
     }
 
-    /* ==== NỘI DUNG CHÍNH ==== */
-    .main-content {
-        flex: 1;
-        padding: 2rem 1.8rem;
-        overflow-y: auto;
+    /* FOOTER NHẸ */
+    footer {
+      border-top: 1px solid #f0f0f5;
+      padding: 32px 0;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #8a8a9e;
+      font-size: 14px;
+      font-weight: 500;
     }
 
-    .main-content h1 {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-        background: linear-gradient(135deg, #f9e8a2, #ffc857);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+    footer i {
+      margin-right: 6px;
+      color: #a5b4fc;
     }
 
-    .main-content .subtitle {
-        color: #94a3b8;
-        margin-bottom: 2rem;
-        font-size: 1rem;
+    /* responsive linh động */
+    @media (max-width: 1100px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
     }
 
-    .empty-state {
-        background: #0f1422;
-        border-radius: 2rem;
-        padding: 3rem 2rem;
-        text-align: center;
-        border: 2px dashed #2d3b5a;
-        margin-bottom: 2rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .empty-icon {
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        background: #1a2237;
-        border: 2px dashed #334155;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        color: #4b5568;
-    }
-
-    .empty-state h2 {
-        color: #cbd5e1;
-        font-size: 1.4rem;
-        font-weight: 600;
-    }
-
-    .empty-state p {
-        color: #64748b;
-        font-size: 0.95rem;
-        max-width: 400px;
-    }
-
-    .empty-state .material-symbols-outlined {
-        font-size: 40px;
-        color: #fbbf24;
-        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
-    }
-
-    .pack-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .pack-card {
-        background: #1e2538;
-        border-radius: 1.5rem;
-        padding: 1.3rem 0.8rem 1rem;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        border: 2px solid #2d3748;
-        box-shadow: 0 12px 25px -8px rgba(0, 0, 0, 0.7);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.7rem;
-    }
-
-    .pack-card:hover {
-        transform: translateY(-6px);
-        border-color: #ffc857;
-        box-shadow: 0 20px 30px -10px #ffc85740, 0 0 0 1px #ffc85780;
-    }
-
-    .pack-card.selected {
-        border-color: #fbbf24;
-        box-shadow: 0 0 0 3px #fbbf2480, 0 15px 25px -8px black;
-        background: #252e44;
-    }
-
-    .pack-img {
-        width: 90px;
-        height: 90px;
-        object-fit: contain;
-        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.6));
-        transition: transform 0.2s;
-    }
-
-    .pack-card:hover .pack-img { transform: scale(1.05); }
-
-    .pack-name {
-        font-weight: 600;
-        font-size: 1.15rem;
-        color: #e2e8f0;
-    }
-
-    .pack-price {
-        color: #fbbf24;
-        font-weight: 700;
-        font-size: 1.05rem;
-        background: #2d3748;
-        padding: 0.2rem 0.9rem;
-        border-radius: 30px;
-        display: inline-block;
-    }
-
-    .reveal-panel {
-        background: #0f1422;
-        border-radius: 2rem;
-        padding: 1.6rem 1.4rem;
-        border: 1px solid #2e3a52;
-        box-shadow: inset 0 2px 8px #00000055, 0 15px 30px -10px black;
-        display: flex;
+    @media (max-width: 900px) {
+      .header-inner {
         flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-        min-height: 220px;
-    }
-
-    .preview-square {
-        width: 150px;
-        height: 150px;
-        background: #1a1f2e;
-        border-radius: 1.2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 3px solid #334155;
-        box-shadow: 0 0 0 1px #00000055, 0 15px 20px -8px black;
-        transition: border-color 0.2s;
-        flex-shrink: 0;
-    }
-
-    .preview-square.active {
-        border-color: #fbbf24;
-        box-shadow: 0 0 20px #fbbf2440, 0 0 0 1px #fbbf24;
-    }
-
-    .preview-square img {
-        width: 110px;
-        height: 110px;
-        object-fit: contain;
-        filter: drop-shadow(0 6px 10px black);
-    }
-
-    .rate-info {
-        flex: 1;
-        min-width: 220px;
-        display: flex;
-        flex-direction: column;
-        gap: 0.7rem;
-    }
-
-    .rate-title {
-        color: #94a3b8;
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: 500;
-    }
-
-    .rate-name {
-        color: #f1f5f9;
-        font-size: 1.7rem;
-        font-weight: 700;
-        line-height: 1.2;
-    }
-
-    .rate-badge-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.9rem;
-        margin-top: 0.4rem;
-    }
-
-    .rate-item {
-        background: #1e2538;
-        padding: 0.5rem 1rem;
-        border-radius: 40px;
-        border-left: 4px solid #fbbf24;
-        box-shadow: 0 2px 6px #00000033;
-    }
-
-    .rate-item .label {
-        font-size: 0.75rem;
-        color: #9ca3af;
-        letter-spacing: 0.5px;
-        display: block;
-        margin-bottom: 0.1rem;
-    }
-
-    .rate-item .value {
-        font-weight: 700;
-        font-size: 1.2rem;
-        color: #fde047;
-    }
-
-    .placeholder-text {
-        color: #5a6a85;
-        font-size: 1.05rem;
-        font-style: italic;
-        text-align: center;
+        gap: 16px;
+      }
+      .nav-links {
+        order: 3;
         width: 100%;
-        padding: 1.5rem;
-    }
-
-    .buy-btn {
-        background: linear-gradient(145deg, #fbbf24, #e6a017);
-        border: none;
-        color: #0a0e16;
-        font-weight: 700;
-        font-size: 0.95rem;
-        padding: 0.75rem 2rem;
-        border-radius: 60px;
-        cursor: pointer;
-        transition: all 0.2s;
-        margin-top: 0.4rem;
-        letter-spacing: 0.5px;
-        box-shadow: 0 10px 18px -8px #fbbf24aa;
-        border: 1px solid #ffd966;
-        align-self: flex-start;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .buy-btn .material-symbols-outlined {
-        font-size: 18px;
-        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 20;
-    }
-
-    .buy-btn:hover:not(:disabled) {
-        transform: scale(1.02);
-        background: linear-gradient(145deg, #ffd966, #fbbf24);
-        box-shadow: 0 15px 25px -10px #fbbf24;
-    }
-
-    .buy-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-        transform: none;
-        box-shadow: none;
-    }
-
-    /* Nút cửa hàng */
-    .shop-fab {
-        position: fixed;
-        bottom: 24px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 68px;
-        height: 68px;
-        border-radius: 50%;
-        background: linear-gradient(145deg, #fbbf24, #e6a017);
-        border: 3px solid #0b0f1c;
-        color: #0a0e16;
-        display: flex;
-        align-items: center;
         justify-content: center;
-        cursor: pointer;
-        z-index: 90;
-        box-shadow: 0 12px 30px -8px #fbbf24cc, 0 0 0 4px #fbbf2422, 0 0 40px #fbbf2433;
-        transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
-        animation: shopFloat 3s ease-in-out infinite;
-    }
-
-    @keyframes shopFloat {
-        0%, 100% { transform: translateX(-50%) translateY(0); }
-        50% { transform: translateX(-50%) translateY(-6px); }
-    }
-
-    .shop-fab:hover {
-        animation: none;
-        transform: translateX(-50%) scale(1.12);
-        box-shadow: 0 20px 40px -10px #fbbf24, 0 0 0 6px #fbbf2433, 0 0 60px #fbbf2466;
-    }
-
-    .shop-fab:active { transform: translateX(-50%) scale(0.96); }
-
-    .shop-fab .material-symbols-outlined {
-        font-size: 32px;
-        color: #0a0e16;
-        font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
-        transition: transform 0.25s;
-    }
-
-    .shop-fab:hover .material-symbols-outlined { transform: scale(1.1) rotate(-8deg); }
-
-    .shop-fab-label {
-        position: fixed;
-        bottom: 6px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 0.7rem;
-        font-weight: 700;
-        color: #fbbf24;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        z-index: 90;
-        pointer-events: none;
-        text-shadow: 0 0 8px #fbbf2488;
-        white-space: nowrap;
-    }
-
-    /* ==== MODAL OVERLAY ==== */
-    .modal-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(4px);
-        z-index: 200;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s;
-    }
-
-    .modal-overlay.show {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    /* ==== HỘP THƯ GÓC TRÁI ==== */
-    .mailbox-panel {
-        position: fixed;
-        top: 80px;
-        left: 20px;
-        width: 300px;
-        background: linear-gradient(145deg, #161c2e, #101624);
-        border-radius: 1.5rem;
-        border: 2px solid #2d3b5a;
-        box-shadow: 0 30px 60px -15px black, 0 0 0 1px #ffffff08 inset;
-        z-index: 210;
-        padding: 1.2rem;
-        transform: translateX(-120%);
-        opacity: 0;
-        transition: all 0.35s cubic-bezier(0.34, 1.3, 0.64, 1);
-    }
-
-    .mailbox-panel.show {
-        transform: translateX(0);
-        opacity: 1;
-    }
-
-    .mailbox-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 1.2rem;
-        padding-bottom: 0.8rem;
-        border-bottom: 1px solid #2d3b5a;
-    }
-
-    .mailbox-title {
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: #f1f5f9;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .mailbox-title .material-symbols-outlined {
-        color: #fbbf24;
-        font-size: 24px;
-        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
-    }
-
-    .mailbox-sections {
-        display: flex;
+        padding-top: 8px;
+        border-top: 1px solid #f0f0f5;
+        margin-top: 10px;
+      }
+      .hero {
         flex-direction: column;
-        gap: 0.8rem;
-    }
-
-    .mailbox-section {
-        background: #1a2237;
-        border-radius: 1rem;
-        padding: 1rem 1.1rem;
-        border: 2px solid #2d3b5a;
-        cursor: pointer;
-        transition: all 0.22s;
-        display: flex;
-        align-items: center;
-        gap: 0.9rem;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .mailbox-section::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 4px;
-        background: #fbbf24;
-        transform: scaleY(0);
-        transition: transform 0.25s;
-    }
-
-    .mailbox-section:hover {
-        background: #212b44;
-        border-color: #fbbf2455;
-        transform: translateX(4px);
-    }
-
-    .mailbox-section:hover::before { transform: scaleY(1); }
-
-    .mailbox-section.active {
-        border-color: #fbbf24;
-        background: #252e44;
-        box-shadow: 0 0 0 1px #fbbf2422, 0 8px 20px -8px black;
-    }
-
-    .mailbox-section.active::before { transform: scaleY(1); }
-
-    .section-icon {
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .section-icon.notif {
-        background: linear-gradient(145deg, #3b82f6, #2563eb);
-        box-shadow: 0 6px 14px -4px #3b82f6aa;
-    }
-
-    .section-icon.gift {
-        background: linear-gradient(145deg, #ec4899, #db2777);
-        box-shadow: 0 6px 14px -4px #ec4899aa;
-    }
-
-    .section-icon .material-symbols-outlined {
-        color: white;
-        font-size: 24px;
-        font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
-    }
-
-    .section-info { flex: 1; }
-
-    .section-name {
-        font-weight: 700;
-        color: #f1f5f9;
-        font-size: 1rem;
-        margin-bottom: 0.15rem;
-    }
-
-    .section-desc {
-        font-size: 0.78rem;
-        color: #94a3b8;
-    }
-
-    .section-badge {
-        background: #ef4444;
-        color: #fff;
-        font-size: 0.7rem;
-        font-weight: 700;
-        padding: 0.2rem 0.55rem;
-        border-radius: 40px;
-        min-width: 22px;
-        text-align: center;
-        border: 2px solid #1a2237;
-        box-shadow: 0 0 8px #ef444488;
-    }
-
-    /* ==== KHUNG NỘI DUNG Ở GIỮA ==== */
-    .mail-content-panel {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0.85);
-        width: 90%;
-        max-width: 620px;
-        max-height: 80vh;
-        background: linear-gradient(145deg, #161c2e, #101624);
-        border-radius: 1.8rem;
-        border: 2px solid #2d3b5a;
-        box-shadow: 0 40px 80px -20px black, 0 0 0 1px #ffffff08 inset, 0 0 60px #fbbf2422;
-        z-index: 220;
-        padding: 1.8rem;
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-    }
-
-    .mail-content-panel.show {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translate(-50%, -50%) scale(1);
-    }
-
-    .content-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 1.2rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid #2d3b5a;
-        gap: 1rem;
-    }
-
-    .content-title {
-        font-size: 1.4rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        color: #f1f5f9;
-    }
-
-    .content-title .material-symbols-outlined {
-        font-size: 28px;
-        color: #fbbf24;
-        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
-    }
-
-    /* Nút X đóng - BÊN PHẢI */
-    .content-close-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: #1e2538;
-        border: 2px solid #334155;
-        color: #cbd5e1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.22s;
-        flex-shrink: 0;
-    }
-
-    .content-close-btn:hover {
-        background: #ef4444;
-        border-color: #ef4444;
-        color: white;
-        transform: rotate(90deg) scale(1.05);
-        box-shadow: 0 0 20px #ef444488;
-    }
-
-    .content-close-btn .material-symbols-outlined {
-        font-size: 22px;
-        font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
-    }
-
-    .content-body {
-        overflow-y: auto;
-        flex: 1;
-        padding-right: 0.3rem;
-    }
-
-    .content-body::-webkit-scrollbar { width: 6px; }
-    .content-body::-webkit-scrollbar-track { background: #1a2237; border-radius: 10px; }
-    .content-body::-webkit-scrollbar-thumb { background: #fbbf2455; border-radius: 10px; }
-    .content-body::-webkit-scrollbar-thumb:hover { background: #fbbf24aa; }
-
-    /* Item thông báo */
-    .notif-item {
-        background: #1a2237;
-        border-radius: 1rem;
-        padding: 1rem 1.1rem;
-        margin-bottom: 0.8rem;
-        border-left: 4px solid #3b82f6;
-        display: flex;
-        gap: 0.9rem;
         align-items: flex-start;
+        gap: 20px;
+      }
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
-    .notif-item .material-symbols-outlined {
-        color: #3b82f6;
-        font-size: 22px;
-        flex-shrink: 0;
-        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 16px;
+      }
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+      .wallet-profile {
+        gap: 10px;
+      }
+      .profile-info {
+        display: none;
+      }
+      .profile-btn {
+        padding: 6px;
+      }
+      .wallet-badge {
+        padding: 6px 12px;
+      }
+      .wallet-badge .balance {
+        font-size: 14px;
+      }
     }
 
-    .notif-item-text {
-        color: #cbd5e1;
-        font-size: 0.9rem;
-        line-height: 1.5;
+    /* tinh chỉnh màu trắng tinh tế */
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
     }
-
-    .notif-item-text strong {
-        color: #f1f5f9;
-        display: block;
-        margin-bottom: 0.2rem;
-    }
-
-    .notif-item-time {
-        color: #64748b;
-        font-size: 0.72rem;
-        margin-top: 0.3rem;
-    }
-
-    /* Item quà tặng */
-    .gift-item {
-        background: #1a2237;
-        border-radius: 1rem;
-        padding: 1rem 1.1rem;
-        margin-bottom: 0.8rem;
-        border-left: 4px solid #ec4899;
-        display: flex;
-        gap: 0.9rem;
-        align-items: center;
-    }
-
-    .gift-item-icon {
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: linear-gradient(145deg, #ec4899, #db2777);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        font-size: 1.5rem;
-        box-shadow: 0 6px 14px -4px #ec4899aa;
-    }
-
-    .gift-item-info { flex: 1; }
-
-    .gift-item-name {
-        color: #f1f5f9;
-        font-weight: 700;
-        font-size: 0.95rem;
-        margin-bottom: 0.15rem;
-    }
-
-    .gift-item-desc {
-        color: #94a3b8;
-        font-size: 0.8rem;
-    }
-
-    .gift-claim-btn {
-        background: linear-gradient(145deg, #ec4899, #db2777);
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 40px;
-        font-size: 0.8rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.2s;
-        box-shadow: 0 6px 14px -6px #ec4899cc;
-        white-space: nowrap;
-    }
-
-    .gift-claim-btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px -8px #ec4899;
-    }
-
-    .gift-claim-btn.claimed {
-        background: #334155;
-        color: #94a3b8;
-        cursor: not-allowed;
-        box-shadow: none;
-    }
-
-    /* ==== SETTINGS MODAL ==== */
-    .settings-panel {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0.85);
-        width: 90%;
-        max-width: 480px;
-        background: linear-gradient(145deg, #161c2e, #101624);
-        border-radius: 1.8rem;
-        border: 2px solid #2d3b5a;
-        box-shadow: 0 40px 80px -20px black, 0 0 0 1px #ffffff08 inset, 0 0 60px #fbbf2422;
-        z-index: 230;
-        padding: 1.8rem;
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
-        display: flex;
-        flex-direction: column;
-        max-height: 85vh;
-        overflow-y: auto;
-    }
-
-    .settings-panel.show {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translate(-50%, -50%) scale(1);
-    }
-
-    .settings-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 1.5rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid #2d3b5a;
-        gap: 1rem;
-    }
-
-    .settings-title {
-        font-size: 1.4rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        color: #f1f5f9;
-    }
-
-    .settings-title .material-symbols-outlined {
-        font-size: 28px;
-        color: #fbbf24;
-        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
-    }
-
-    .settings-close-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: #1e2538;
-        border: 2px solid #334155;
-        color: #cbd5e1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.22s;
-        flex-shrink: 0;
-    }
-
-    .settings-close-btn:hover {
-        background: #ef4444;
-        border-color: #ef4444;
-        color: white;
-        transform: rotate(90deg) scale(1.05);
-        box-shadow: 0 0 20px #ef444488;
-    }
-
-    .settings-close-btn .material-symbols-outlined {
-        font-size: 22px;
-        font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
-    }
-
-    /* Nhập code */
-    .code-input-label {
-        color: #94a3b8;
-        font-size: 0.82rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: 600;
-        margin-bottom: 0.7rem;
-        display: block;
-    }
-
-    .code-input {
-        width: 100%;
-        background: #1a2237;
-        border: 2px solid #334155;
-        border-radius: 0.9rem;
-        padding: 1rem 1.1rem;
-        color: #f1f5f9;
-        font-size: 1.1rem;
-        font-weight: 600;
-        letter-spacing: 3px;
-        text-align: center;
-        text-transform: uppercase;
-        font-family: 'Courier New', monospace;
-        outline: none;
-        transition: all 0.25s;
-        margin-bottom: 1rem;
-    }
-
-    .code-input::placeholder {
-        color: #4b5568;
-        letter-spacing: 2px;
-        font-weight: 500;
-        text-transform: none;
-    }
-
-    .code-input:focus {
-        border-color: #fbbf24;
-        box-shadow: 0 0 0 4px #fbbf2422, 0 0 20px #fbbf2433;
-        background: #1e293b;
-    }
-
-    /* Nút xác nhận */
-    .confirm-btn {
-        width: 100%;
-        padding: 0.95rem;
-        border: none;
-        border-radius: 60px;
-        background: linear-gradient(145deg, #fbbf24, #e6a017);
-        color: #0a0e16;
-        font-size: 1rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        cursor: pointer;
-        transition: all 0.22s;
-        box-shadow: 0 10px 20px -8px #fbbf24cc;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-bottom: 1.3rem;
-    }
-
-    .confirm-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 15px 28px -8px #fbbf24;
-        background: linear-gradient(145deg, #ffd966, #fbbf24);
-    }
-
-    .confirm-btn:active { transform: scale(0.97); }
-
-    .confirm-btn .material-symbols-outlined {
-        font-size: 20px;
-        font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
-    }
-
-    /* Hướng dẫn */
-    .guide-box {
-        background: #1a2237;
-        border-radius: 1rem;
-        padding: 1.1rem 1.2rem;
-        border-left: 4px solid #3b82f6;
-        margin-bottom: 1rem;
-    }
-
-    .guide-title {
-        color: #60a5fa;
-        font-size: 0.88rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 0.6rem;
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-    }
-
-    .guide-title .material-symbols-outlined {
-        font-size: 18px;
-        font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
-    }
-
-    .guide-text {
-        color: #cbd5e1;
-        font-size: 0.85rem;
-        line-height: 1.6;
-    }
-
-    .guide-text ol {
-        padding-left: 1.2rem;
-        margin-top: 0.4rem;
-    }
-
-    .guide-text ol li {
-        margin-bottom: 0.3rem;
-    }
-
-    /* Chữ nhỏ fanpage */
-    .fanpage-note {
-        text-align: center;
-        color: #64748b;
-        font-size: 0.72rem;
-        font-style: italic;
-        padding-top: 0.8rem;
-        border-top: 1px dashed #2d3b5a;
-        line-height: 1.5;
-    }
-
-    .fanpage-note strong {
-        color: #fbbf24;
-        font-weight: 700;
-    }
-
-    /* Responsive */
-    @media (max-width: 850px) {
-        .layout { flex-direction: column; }
-
-        .sidebar {
-            width: 100%;
-            border-right: none;
-            border-bottom: 1px solid #1e2a44;
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-        }
-
-        .profile-card {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.8rem;
-            flex: 1;
-            min-width: 220px;
-            text-align: left;
-        }
-
-        .avatar-square { width: 80px; height: 80px; margin: 0; }
-        .avatar-circle { width: 60px; height: 60px; font-size: 1.6rem; }
-        .money-badge { width: 30px; height: 30px; top: 5px; right: 5px; }
-        .money-badge .material-symbols-outlined { font-size: 16px; }
-
-        .mail-btn-wrapper {
-            margin-top: 0;
-            padding-top: 0;
-            border-top: none;
-            margin-left: auto;
-        }
-
-        .mail-btn { width: 46px; height: 46px; }
-        .mail-btn .material-symbols-outlined { font-size: 22px; }
-
-        .sidebar-menu {
-            flex-direction: row;
-            flex-wrap: wrap;
-            margin-top: 0;
-            width: 100%;
-        }
-
-        .reveal-panel { flex-direction: column; text-align: center; }
-        .rate-info { text-align: center; align-items: center; }
-        .rate-badge-list { justify-content: center; }
-        .buy-btn { align-self: center; }
-
-        .topbar { padding: 0.7rem 1rem; gap: 0.5rem; }
-        .topbar-logo { font-size: 1rem; }
-        .topbar-logo span { font-size: 1.2rem; }
-        .logout-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
-
-        .shop-fab { width: 58px; height: 58px; bottom: 20px; }
-        .shop-fab .material-symbols-outlined { font-size: 26px; }
-        #mainApp { padding-bottom: 90px; }
-
-        .mailbox-panel {
-            left: 10px;
-            right: 10px;
-            width: auto;
-            top: 70px;
-        }
-    }
-
-    @media (max-width: 500px) {
-        .main-content { padding: 1.2rem 1rem; }
-        .main-content h1 { font-size: 1.5rem; }
-        .profile-name { font-size: 1rem; }
-        .mail-content-panel { padding: 1.3rem; }
-        .content-title { font-size: 1.1rem; }
-        .settings-panel { padding: 1.3rem; }
-        .settings-title { font-size: 1.15rem; }
-    }
-</style>
+  </style>
 </head>
 <body>
 
-<!-- ============ MÀN HÌNH ĐĂNG NHẬP ============ -->
-<div id="loginScreen">
-    <div class="login-box">
-        <div class="login-logo">🃏</div>
-        <h2>PACK THẺ ẢO DIỆU</h2>
-        <p>Đăng nhập để khám phá kho pack thẻ</p>
-        <button class="login-btn" id="loginBtn">🔓 ĐĂNG NHẬP</button>
-    </div>
-</div>
-
-<!-- ============ GIAO DIỆN CHÍNH ============ -->
-<div id="mainApp">
-    <header class="topbar">
-        <div class="topbar-logo">
-            <span>🃏</span> PACK THẺ ẢO DIỆU
-        </div>
-        <div class="topbar-right">
-            <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
-        </div>
-    </header>
-
-    <div class="layout">
-        <!-- ==== SIDEBAR TRÁI ==== -->
-        <aside class="sidebar">
-            <div class="profile-card">
-                <div class="avatar-square">
-                    <div class="avatar-circle" id="avatarCircle">?</div>
-                    <div class="status-dot"></div>
-                    <div class="money-badge" id="moneyBadge" title="Số dư ví">
-                        <span class="material-symbols-outlined">payments</span>
-                        <span class="money-tooltip" id="moneyTooltip">50.000đ</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="profile-name" id="profileName">Người dùng</div>
-                    <div class="profile-id" id="profileId">#000000</div>
-                </div>
-            </div>
-
-            <div class="mail-btn-wrapper">
-                <button class="mail-btn" id="mailBtn" title="Hộp thư">
-                    <span class="material-symbols-outlined">mail</span>
-                    <span class="mail-badge" id="mailBadge">3</span>
-                </button>
-            </div>
-
-            <nav class="sidebar-menu">
-                <div class="menu-item active">🏠 Trang chủ</div>
-                <div class="menu-item">📦 Kho pack</div>
-                <div class="menu-item">🏆 Bộ sưu tập</div>
-                <div class="menu-item" id="settingsMenu">
-                    <span class="material-symbols-outlined">settings</span>
-                    Cài đặt
-                </div>
-            </nav>
-        </aside>
-
-        <!-- ==== NỘI DUNG CHÍNH ==== -->
-        <main class="main-content">
-            <h1>✨ Cửa hàng Pack Thẻ</h1>
-            <p class="subtitle">Mua pack để bắt đầu sưu tầm thẻ</p>
-
-            <div class="empty-state" id="emptyState">
-                <div class="empty-icon">📦</div>
-                <h2>Bạn chưa có Pack Thẻ nào</h2>
-                <p>Hãy mua pack bên dưới để bắt đầu. Bạn đang có <strong style="color:#fbbf24;">50.000đ</strong> trong ví!</p>
-                <span class="material-symbols-outlined">payments</span>
-            </div>
-
-            <div class="pack-grid" id="packGrid">
-                <div class="pack-card" data-pack="pack1" data-name="Khởi Đầu" data-price="50000" data-rate="Thường: 70% · Hiếm: 25% · Sử thi: 4.5% · Huyền thoại: 0.5%">
-                    <img class="pack-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232d3748'/%3E%3Cpath d='M30 40 L70 40 L70 70 L50 85 L30 70 Z' fill='%23fbbf24' opacity='0.8'/%3E%3Ccircle cx='50' cy='45' r='12' fill='%23ffd966'/%3E%3Ctext x='50' y='92' font-size='12' fill='%23a0aec0' text-anchor='middle' font-family='Arial'%3EPACK I%3C/text%3E%3C/svg%3E" alt="Pack Khởi Đầu">
-                    <div class="pack-name">Khởi Đầu</div>
-                    <div class="pack-price">50.000đ</div>
-                </div>
-                <div class="pack-card" data-pack="pack2" data-name="Tinh Hoa" data-price="120000" data-rate="Thường: 40% · Hiếm: 45% · Sử thi: 12% · Huyền thoại: 3%">
-                    <img class="pack-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%234a3b6b'/%3E%3Cpath d='M30 35 L70 35 L70 65 L50 80 L30 65 Z' fill='%23b794f4' opacity='0.9'/%3E%3Cpath d='M45 45 L55 45 L60 55 L50 65 L40 55 Z' fill='%23e9d8fd'/%3E%3Ctext x='50' y='92' font-size='12' fill='%23cbd5e1' text-anchor='middle' font-family='Arial'%3EPACK II%3C/text%3E%3C/svg%3E" alt="Pack Tinh Hoa">
-                    <div class="pack-name">Tinh Hoa</div>
-                    <div class="pack-price">120.000đ</div>
-                </div>
-                <div class="pack-card" data-pack="pack3" data-name="Vô Cực" data-price="250000" data-rate="Thường: 15% · Hiếm: 40% · Sử thi: 35% · Huyền thoại: 10%">
-                    <img class="pack-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f2b3a'/%3E%3Cpolygon points='50,20 75,40 68,75 32,75 25,40' fill='%2338bdf8' opacity='0.8'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%237dd3fc'/%3E%3Ctext x='50' y='92' font-size='12' fill='%2394a3b8' text-anchor='middle' font-family='Arial'%3EPACK III%3C/text%3E%3C/svg%3E" alt="Pack Vô Cực">
-                    <div class="pack-name">Vô Cực</div>
-                    <div class="pack-price">250.000đ</div>
-                </div>
-                <div class="pack-card" data-pack="pack4" data-name="Thần Thoại" data-price="500000" data-rate="Thường: 5% · Hiếm: 25% · Sử thi: 45% · Huyền thoại: 25%">
-                    <img class="pack-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23221d3d'/%3E%3Cpath d='M50 15 L70 30 L70 60 L50 80 L30 60 L30 30 Z' fill='%23f472b6' opacity='0.9'/%3E%3Cpath d='M50 35 L60 45 L55 60 L45 60 L40 45 Z' fill='%23fbcfe8'/%3E%3Ctext x='50' y='92' font-size='12' fill='%23f9a8d4' text-anchor='middle' font-family='Arial'%3EPACK IV%3C/text%3E%3C/svg%3E" alt="Pack Thần Thoại">
-                    <div class="pack-name">Thần Thoại</div>
-                    <div class="pack-price">500.000đ</div>
-                </div>
-            </div>
-
-            <div class="reveal-panel" id="revealPanel">
-                <div class="preview-square" id="previewSquare">
-                    <img id="previewImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e2538'/%3E%3Ctext x='50' y='58' font-size='28' fill='%234b5568' text-anchor='middle' font-family='Arial'%3E%3F%3C/text%3E%3C/svg%3E" alt="Chưa chọn pack">
-                </div>
-                <div class="rate-info">
-                    <div class="rate-title">📊 TỈ LỆ RA THẺ</div>
-                    <div class="rate-name" id="rateName">— Chưa chọn —</div>
-                    <div class="rate-badge-list" id="rateBadgeList">
-                        <div class="placeholder-text" style="padding:0.3rem 0;">Ấn vào pack để xem chi tiết</div>
-                    </div>
-                    <button class="buy-btn" id="buyBtn" disabled>
-                        <span class="material-symbols-outlined">payments</span>
-                        Mua pack
-                    </button>
-                </div>
-            </div>
-        </main>
+<header>
+  <div class="container header-inner">
+    <!-- Logo -->
+    <div class="logo">
+      <i class="fas fa-bolt"></i> MUA PACK THẺ
     </div>
 
-    <!-- Nút cửa hàng -->
-    <button class="shop-fab" id="shopFab" title="Cửa hàng">
-        <span class="material-symbols-outlined">shopping_cart</span>
-        <span class="shop-fab-tooltip">Cửa hàng Pack</span>
-    </button>
-    <div class="shop-fab-label">Cửa Hàng</div>
-</div>
-
-<!-- Overlay chung -->
-<div class="modal-overlay" id="modalOverlay"></div>
-
-<!-- ==== HỘP THƯ GÓC TRÁI ==== -->
-<div class="mailbox-panel" id="mailboxPanel">
-    <div class="mailbox-header">
-        <div class="mailbox-title">
-            <span class="material-symbols-outlined">mail</span>
-            Hộp Thư
-        </div>
-    </div>
-    <div class="mailbox-sections">
-        <div class="mailbox-section" data-section="notif">
-            <div class="section-icon notif">
-                <span class="material-symbols-outlined">notifications</span>
-            </div>
-            <div class="section-info">
-                <div class="section-name">Thông báo</div>
-                <div class="section-desc">Tin tức &amp; cập nhật</div>
-            </div>
-            <span class="section-badge">3</span>
-        </div>
-        <div class="mailbox-section" data-section="gift">
-            <div class="section-icon gift">
-                <span class="material-symbols-outlined">redeem</span>
-            </div>
-            <div class="section-info">
-                <div class="section-name">Quà tặng</div>
-                <div class="section-desc">Nhận thưởng miễn phí</div>
-            </div>
-            <span class="section-badge">2</span>
-        </div>
-    </div>
-</div>
-
-<!-- ==== KHUNG NỘI DUNG Ở GIỮA ==== -->
-<div class="mail-content-panel" id="mailContentPanel">
-    <div class="content-header">
-        <div class="content-title" id="contentTitle">
-            <span class="material-symbols-outlined">notifications</span>
-            <span id="contentTitleText">Thông báo</span>
-        </div>
-        <button class="content-close-btn" id="contentCloseBtn" title="Đóng">
-            <span class="material-symbols-outlined">close</span>
-        </button>
-    </div>
-    <div class="content-body" id="contentBody">
-        <!-- Nội dung sẽ được JS render -->
-    </div>
-</div>
-
-<!-- ==== SETTINGS MODAL ==== -->
-<div class="settings-panel" id="settingsPanel">
-    <div class="settings-header">
-        <div class="settings-title">
-            <span class="material-symbols-outlined">settings</span>
-            Cài đặt
-        </div>
-        <button class="settings-close-btn" id="settingsCloseBtn" title="Đóng">
-            <span class="material-symbols-outlined">close</span>
-        </button>
+    <!-- Menu điều hướng -->
+    <div class="nav-links">
+      <a href="#"><i class="fas fa-store"></i> Cửa hàng</a>
+      <a href="#"><i class="fas fa-fire"></i> Bán chạy</a>
+      <a href="#"><i class="fas fa-gem"></i> Pack mới</a>
+      <a href="#"><i class="fas fa-headset"></i> Hỗ trợ</a>
     </div>
 
-    <label class="code-input-label">Nhập code</label>
-    <input type="text" class="code-input" id="codeInput" placeholder="Nhập code tại đây..." maxlength="20" autocomplete="off">
-
-    <button class="confirm-btn" id="confirmCodeBtn">
-        <span class="material-symbols-outlined">check_circle</span>
-        XÁC NHẬN
-    </button>
-
-    <div class="guide-box">
-        <div class="guide-title">
-            <span class="material-symbols-outlined">help</span>
-            Hướng dẫn nhận code
+    <!-- Ví tiền & hồ sơ đẹp -->
+    <div class="wallet-profile">
+      <!-- ví tiền -->
+      <div class="wallet-badge">
+        <i class="fas fa-wallet"></i>
+        <span class="balance">1.250.000</span>
+        <span class="currency">VND</span>
+      </div>
+      <!-- hồ sơ người dùng -->
+      <div class="profile-btn">
+        <div class="avatar">MP</div>
+        <div class="profile-info">
+          <div class="profile-name">Minh Phúc</div>
+          <div class="profile-role">Thành viên VIP</div>
         </div>
-        <div class="guide-text">
-            <ol>
-                <li>Truy cập vào fanpage Admin của shop</li>
-                <li>Nhấn <strong>Like</strong> và <strong>Theo dõi</strong> fanpage</li>
-                <li>Nhấn <strong>Share</strong> bài viết sự kiện ở chế độ công khai</li>
-                <li>Nhắn tin cho Admin để nhận code</li>
-                <li>Nhập code vào ô phía trên và nhấn <strong>XÁC NHẬN</strong></li>
-            </ol>
-        </div>
+        <i class="fas fa-chevron-down" style="font-size: 12px; color: #9a9ab0; margin-left: 6px;"></i>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <!-- Hero + bộ lọc -->
+  <div class="hero">
+    <div>
+      <h1>Pack thẻ game & giải trí</h1>
+      <p>Mua nhanh – Nhận ngay – Giá tốt nhất thị trường</p>
+    </div>
+    <div class="filter-tabs">
+      <span class="active">Tất cả</span>
+      <span>Game</span>
+      <span>Giải trí</span>
+      <span>Nạp thẻ</span>
+    </div>
+  </div>
+
+  <!-- Lưới sản phẩm -->
+  <div class="product-grid">
+    <!-- Card 1 -->
+    <div class="product-card">
+      <div class="card-icon"><i class="fas fa-gamepad"></i></div>
+      <h3>Pack Garena</h3>
+      <div class="product-desc">100.000đ – 500.000đ<br>Liên Quân, Free Fire</div>
+      <div class="price-row">
+        <span class="price">100.000 <small>đ</small></span>
+        <span class="badge">-5%</span>
+      </div>
+      <button class="btn-buy"><i class="fas fa-cart-plus"></i> Mua ngay</button>
     </div>
 
-    <div class="fanpage-note">
-        Tham gia <strong>Fanpage Admin</strong> để nhận code
+    <!-- Card 2 -->
+    <div class="product-card">
+      <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+      <h3>Pack Viettel</h3>
+      <div class="product-desc">Thẻ điện thoại, data 4G<br>Mệnh giá linh hoạt</div>
+      <div class="price-row">
+        <span class="price">50.000 <small>đ</small></span>
+        <span class="badge">Phổ biến</span>
+      </div>
+      <button class="btn-buy"><i class="fas fa-cart-plus"></i> Mua ngay</button>
     </div>
-</div>
 
-<script>
-(function() {
-    // ========== LOCALSTORAGE KEY ==========
-    const STORAGE_KEY = 'packTheLoggedInUser';
+    <!-- Card 3 -->
+    <div class="product-card">
+      <div class="card-icon"><i class="fas fa-playstation"></i></div>
+      <h3>Pack PlayStation</h3>
+      <div class="product-desc">PSN Card US/ASIA<br>Mua game, DLC</div>
+      <div class="price-row">
+        <span class="price">250.000 <small>đ</small></span>
+        <span class="badge">-8%</span>
+      </div>
+      <button class="btn-buy"><i class="fas fa-cart-plus"></i> Mua ngay</button>
+    </div>
 
-    // ========== BIẾN TOÀN CỤC ==========
-    let walletBalance = 50000;
-    let ownedPacks = [];
+    <!-- Card 4 -->
+    <div class="product-card">
+      <div class="card-icon"><i class="fab fa-steam"></i></div>
+      <h3>Steam Wallet</h3>
+      <div class="product-desc">Nạp game Steam<br>Code toàn cầu</div>
+      <div class="price-row">
+        <span class="price">200.000 <small>đ</small></span>
+        <span class="badge">Hot</span>
+      </div>
+      <button class="btn-buy"><i class="fas fa-cart-plus"></i> Mua ngay</button>
+    </div>
 
-    // ========== LẤY PHẦN TỬ ==========
-    const loginScreen = document.getElementById('loginScreen');
-    const mainApp = document.getElementById('mainApp');
-    const loginBtn = document.getElementById('loginBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const avatarCircle = document.getElementById('avatarCircle');
-    const profileName = document.getElementById('profileName');
-    const profileId = document.getElementById('profileId');
-    const walletEl = document.getElementById('moneyBadge');
-    const walletAmount = document.getElementById('moneyTooltip');
-    const emptyState = document.getElementById('emptyState');
-    const packCards = document.querySelectorAll('.pack-card');
-    const previewSquare = document.getElementById('previewSquare');
-    const previewImage = document.getElementById('previewImage');
-    const rateName = document.getElementById('rateName');
-    const rateBadgeList = document.getElementById('rateBadgeList');
-    const buyBtn = document.getElementById('buyBtn');
-    const mailBtn = document.getElementById('mailBtn');
-    const mailBadge = document.getElementById('mailBadge');
-    const shopFab = document.getElementById('shopFab');
+    <!-- Card 5 -->
+    <div class="product-card">
+      <div class="card-icon"><i class="fas fa-gem"></i></div>
+      <h3>Pack Kim Cương</h3>
+      <div class="product-desc">Genshin, Liên Quân<br>Nạp siêu tốc</div>
+      <div class="price-row">
+        <span class="price">500.000 <small>đ</small></span>
+        <span class="badge">-10%</span>
+      </div>
+      <button class="btn-buy"><i class="fas fa-cart-plus"></i> Mua ngay</button>
+    </div>
 
-    // Hộp thư
-    const modalOverlay = document.getElementById('modalOverlay');
-    const mailboxPanel = document.getElementById('mailboxPanel');
-    const mailContentPanel = document.getElementById('mailContentPanel');
-    const contentCloseBtn = document.getElementById('contentCloseBtn');
-    const contentTitle = document.getElementById('contentTitle');
-    const contentTitleText = document.getElementById('contentTitleText');
-    const contentBody = document.getElementById('contentBody');
-    const mailboxSections = document.querySelectorAll('.mailbox-section');
+    <!-- Card 6 -->
+    <div class="product-card">
+      <div class="card-icon"><i class="fas fa-film"></i></div>
+      <h3>Netflix & Chill</h3>
+      <div class="product-desc">Thẻ quà tặng Netflix<br>1 – 6 tháng</div>
+      <div class="price-row">
+        <span class="price">180.000 <small>đ</small></span>
+        <span class="badge">Tiết kiệm</span>
+      </div>
+      <button class="btn-buy"><i class="fas fa-cart-plus"></i> Mua ngay</button>
+    </div>
 
-    // Settings
-    const settingsMenu = document.getElementById('settingsMenu');
-    const settingsPanel = document.getElementById('settingsPanel');
-    const settingsCloseBtn = document.getElementById('settingsCloseBtn');
-    const codeInput = document.getElementById('codeInput');
-    const confirmCodeBtn = document.getElementById('confirmCodeBtn');
+    <!-- Card 7 -->
+    <div class="product-card">
+      <div class="card-icon"><i class="fab fa-google-play"></i></div>
+      <h3>Google Play</h3>
+      <div class="product-desc">US / JP / VN<br>Mua app, game</div>
+      <div class="price-row">
+        <span class="price">150.000 <small>đ</small></span>
+        <span class="badge">-3%</span>
+      </div>
+      <button class="btn-buy"><i class="fas fa-cart-plus"></i> Mua ngay</button>
+    </div>
 
-    // ========== HÀM ĐỊNH DẠNG TIỀN ==========
-    function formatMoney(amount) {
-        return amount.toLocaleString('vi-VN');
-    }
+    <!-- Card 8 -->
+    <div class="product-card">
+      <div class="card-icon"><i class="fas fa-robot"></i></div>
+      <h3>Pack Roblox</h3>
+      <div class="product-desc">Robux chính hãng<br>Nạp nhanh 24/7</div>
+      <div class="price-row">
+        <span class="price">120.000 <small>đ</small></span>
+        <span class="badge">Mới</span>
+      </div>
+      <button class="btn-buy"><i class="fas fa-cart-plus"></i> Mua ngay</button>
+    </div>
+  </div>
+</main>
 
-    // ========== CẬP NHẬT VÍ ==========
-    function updateWallet(animate = true) {
-        walletAmount.textContent = formatMoney(walletBalance) + 'đ';
-        if (animate) {
-            walletEl.classList.remove('flash');
-            void walletEl.offsetWidth;
-            walletEl.classList.add('flash');
-        }
-    }
+<footer class="container">
+  <div><i class="fas fa-shield-alt"></i> Thanh toán an toàn 100%</div>
+  <div><i class="fas fa-truck"></i> Giao dịch tức thì 24/7</div>
+  <div>© 2025 MUA PACK THẺ</div>
+</footer>
 
-    // ========== RANDOM ==========
-    function generateRandomId() {
-        const chars = 'ABCDEF0123456789';
-        let id = '';
-        for (let i = 0; i < 6; i++) id += chars.charAt(Math.floor(Math.random() * chars.length));
-        return '#' + id;
-    }
-
-    function generateRandomName() {
-        const names = ['Thợ Săn Thẻ', 'Nhà Sưu Tầm', 'Chiến Binh Pack', 'Pháp Sư Thẻ', 'Cao Thủ Bài', 'Lữ Khách Huyền Thoại'];
-        return names[Math.floor(Math.random() * names.length)];
-    }
-
-    function getInitial(name) { return name.charAt(0).toUpperCase(); }
-
-    // ========== LƯU / ĐỌC / XÓA SESSION ==========
-    function saveSession(user) {
-        try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
-        } catch (e) {
-            console.warn('Không thể lưu session:', e);
-        }
-    }
-
-    function loadSession() {
-        try {
-            const data = localStorage.getItem(STORAGE_KEY);
-            return data ? JSON.parse(data) : null;
-        } catch (e) {
-            return null;
-        }
-    }
-
-    function clearSession() {
-        try {
-            localStorage.removeItem(STORAGE_KEY);
-        } catch (e) {}
-    }
-
-    // ========== ÁP DỤNG USER VÀO UI ==========
-    function applyUser(user) {
-        profileName.textContent = user.name;
-        profileId.textContent = user.id;
-        avatarCircle.textContent = getInitial(user.name);
-        walletBalance = user.wallet !== undefined ? user.wallet : 50000;
-        updateWallet(false);
-    }
-
-    // ========== HIỆN MAIN APP ==========
-    function showMainApp() {
-        loginScreen.style.display = 'none';
-        mainApp.style.display = 'block';
-        window.scrollTo(0, 0);
-    }
-
-    // ========== HIỆN LOGIN ==========
-    function showLogin() {
-        mainApp.style.display = 'none';
-        loginScreen.style.display = 'flex';
-    }
-
-    // ========== ĐĂNG NHẬP ==========
-    loginBtn.addEventListener('click', function() {
-        const user = {
-            name: generateRandomName(),
-            id: generateRandomId(),
-            wallet: 50000,
-            loginAt: Date.now()
-        };
-
-        // Lưu session
-        saveSession(user);
-
-        // Áp dụng UI
-        applyUser(user);
-        showMainApp();
-    });
-
-    // ========== ĐĂNG XUẤT ==========
-    logoutBtn.addEventListener('click', function() {
-        clearSession();
-        showLogin();
-
-        // Reset UI
-        packCards.forEach(c => c.classList.remove('selected'));
-        previewSquare.classList.remove('active');
-        previewImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e2538'/%3E%3Ctext x='50' y='58' font-size='28' fill='%234b5568' text-anchor='middle' font-family='Arial'%3E%3F%3C/text%3E%3C/svg%3E";
-        rateName.textContent = '— Chưa chọn —';
-        rateBadgeList.innerHTML = '<div class="placeholder-text" style="padding:0.3rem 0;">Ấn vào pack để xem chi tiết</div>';
-        buyBtn.disabled = true;
-        emptyState.style.display = 'flex';
-        walletBalance = 50000;
-        updateWallet(false);
-    });
-
-    // ========== KHỞI TẠO - KIỂM TRA SESSION KHI VÀO WEB ==========
-    function init() {
-        const savedUser = loadSession();
-        if (savedUser && savedUser.name && savedUser.id) {
-            // Có session → vào thẳng main app
-            applyUser(savedUser);
-            showMainApp();
-        } else {
-            // Chưa đăng nhập → hiện login
-            showLogin();
-        }
-    }
-
-    // ========== HỘP THƯ ==========
-    const notifData = [
-        { title: 'Chào mừng đến với Shop Pack!', desc: 'Bạn được tặng 50.000đ khởi đầu. Chúc bạn may mắn!', time: 'Vừa xong', icon: 'celebration' },
-        { title: 'Cập nhật phiên bản mới', desc: 'Đã thêm pack "Thần Thoại" với tỉ lệ ra Huyền Thoại lên tới 25%.', time: '2 giờ trước', icon: 'new_releases' },
-        { title: 'Bảo trì hệ thống', desc: 'Hệ thống sẽ bảo trì vào 2h sáng mai. Mong quý khách thông cảm.', time: '1 ngày trước', icon: 'build' }
-    ];
-
-    const giftData = [
-        { name: 'Pack Khởi Đầu Miễn Phí', desc: 'Nhận 1 pack Khởi Đầu miễn phí', icon: '🎁', claimed: false },
-        { name: 'Thưởng 20.000đ', desc: 'Cộng thêm 20.000đ vào ví', icon: '💰', claimed: false }
-    ];
-
-    function renderNotif() {
-        contentTitle.innerHTML = '<span class="material-symbols-outlined">notifications</span><span id="contentTitleText">Thông báo</span>';
-        let html = '';
-        notifData.forEach(item => {
-            html += `
-                <div class="notif-item">
-                    <span class="material-symbols-outlined">${item.icon}</span>
-                    <div>
-                        <div class="notif-item-text">
-                            <strong>${item.title}</strong>
-                            ${item.desc}
-                        </div>
-                        <div class="notif-item-time">${item.time}</div>
-                    </div>
-                </div>
-            `;
-        });
-        contentBody.innerHTML = html;
-    }
-
-    function renderGift() {
-        contentTitle.innerHTML = '<span class="material-symbols-outlined">redeem</span><span id="contentTitleText">Quà tặng</span>';
-        let html = '';
-        giftData.forEach((item, index) => {
-            html += `
-                <div class="gift-item">
-                    <div class="gift-item-icon">${item.icon}</div>
-                    <div class="gift-item-info">
-                        <div class="gift-item-name">${item.name}</div>
-                        <div class="gift-item-desc">${item.desc}</div>
-                    </div>
-                    <button class="gift-claim-btn ${item.claimed ? 'claimed' : ''}" data-gift-index="${index}" ${item.claimed ? 'disabled' : ''}>
-                        ${item.claimed ? 'Đã nhận' : 'Nhận'}
-                    </button>
-                </div>
-            `;
-        });
-        contentBody.innerHTML = html;
-
-        // Gắn sự kiện cho nút nhận
-        document.querySelectorAll('.gift-claim-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const idx = parseInt(this.dataset.giftIndex);
-                if (giftData[idx].claimed) return;
-                giftData[idx].claimed = true;
-
-                // Cộng tiền nếu là quà tiền
-                if (giftData[idx].name.includes('Thưởng')) {
-                    walletBalance += 20000;
-                    updateWallet(true);
-                }
-
-                alert(`🎉 Bạn đã nhận: ${giftData[idx].name}`);
-                renderGift();
-            });
-        });
-    }
-
-    // Mở hộp thư
-    mailBtn.addEventListener('click', function() {
-        modalOverlay.classList.add('show');
-        mailboxPanel.classList.add('show');
-        // Reset active section
-        mailboxSections.forEach(s => s.classList.remove('active'));
-        // Ẩn badge
-        if (mailBadge) mailBadge.style.display = 'none';
-    });
-
-    // Ấn vào section
-    mailboxSections.forEach(section => {
-        section.addEventListener('click', function() {
-            const type = this.dataset.section;
-            mailboxSections.forEach(s => s.classList.remove('active'));
-            this.classList.add('active');
-
-            if (type === 'notif') renderNotif();
-            else if (type === 'gift') renderGift();
-
-            mailContentPanel.classList.add('show');
-        });
-    });
-
-    // Đóng nội dung
-    contentCloseBtn.addEventListener('click', function() {
-        mailContentPanel.classList.remove('show');
-        mailboxSections.forEach(s => s.classList.remove('active'));
-    });
-
-    // Đóng overlay = đóng tất cả
-    modalOverlay.addEventListener('click', function() {
-        mailboxPanel.classList.remove('show');
-        mailContentPanel.classList.remove('show');
-        settingsPanel.classList.remove('show');
-        modalOverlay.classList.remove('show');
-        mailboxSections.forEach(s => s.classList.remove('active'));
-    });
-
-    // ========== SETTINGS ==========
-    settingsMenu.addEventListener('click', function() {
-        modalOverlay.classList.add('show');
-        settingsPanel.classList.add('show');
-        codeInput.value = '';
-        codeInput.focus();
-    });
-
-    settingsCloseBtn.addEventListener('click', function() {
-        settingsPanel.classList.remove('show');
-        modalOverlay.classList.remove('show');
-    });
-
-    // Xác nhận code
-    confirmCodeBtn.addEventListener('click', function() {
-        const code = codeInput.value.trim().toUpperCase();
-        if (!code) {
-            alert('⚠️ Vui lòng nhập code!');
-            codeInput.focus();
-            return;
-        }
-
-        // Demo: các code hợp lệ
-        const validCodes = {
-            'ADMIN2025': 50000,
-            'PACK50K': 50000,
-            'WELCOME': 20000,
-            'FANPAGE': 100000,
-            'GIFT100': 100000
-        };
-
-        if (validCodes[code]) {
-            walletBalance += validCodes[code];
-            updateWallet(true);
-            alert(`✅ Nhập code thành công!\n\nBạn nhận được: ${formatMoney(validCodes[code])}đ\nSố dư mới: ${formatMoney(walletBalance)}đ`);
-            codeInput.value = '';
-
-            // Cập nhật session
-            const savedUser = loadSession();
-            if (savedUser) {
-                savedUser.wallet = walletBalance;
-                saveSession(savedUser);
-            }
-        } else {
-            alert('❌ Code không hợp lệ!\n\nHãy tham gia Fanpage Admin để nhận code chính xác.');
-            codeInput.value = '';
-            codeInput.focus();
-        }
-    });
-
-    // Enter để xác nhận
-    codeInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') confirmCodeBtn.click();
-    });
-
-    // ========== NÚT CỬA HÀNG ==========
-    shopFab.addEventListener('click', function() {
-        // Cuộn xuống phần pack
-        document.querySelector('.pack-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-
-    // ========== PACK ==========
-    function renderRateBadges(rateString) {
-        const parts = rateString.split('·').map(s => s.trim());
-        if (!parts.length) return '<div class="placeholder-text">Không có dữ liệu</div>';
-        let html = '';
-        parts.forEach(part => {
-            const [label, value] = part.split(':').map(s => s.trim());
-            if (label && value) {
-                html += `<div class="rate-item"><span class="label">${label}</span><span class="value">${value}</span></div>`;
-            } else {
-                html += `<div class="rate-item"><span class="label">${part}</span><span class="value">?</span></div>`;
-            }
-        });
-        return html;
-    }
-
-    function handlePackClick(card) {
-        packCards.forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-
-        const packName = card.dataset.name || 'Không tên';
-        const rateString = card.dataset.rate || 'Không có tỉ lệ';
-        const imgElement = card.querySelector('.pack-img');
-        const imgSrc = imgElement ? imgElement.src : '';
-
-        if (imgSrc) {
-            previewImage.src = imgSrc;
-            previewImage.alt = `Pack ${packName}`;
-        }
-        previewSquare.classList.add('active');
-        rateName.textContent = packName;
-        rateBadgeList.innerHTML = renderRateBadges(rateString);
-        buyBtn.disabled = false;
-    }
-
-    packCards.forEach(card => {
-        card.addEventListener('click', function() { handlePackClick(this); });
-    });
-
-    // ========== MUA PACK ==========
-    buyBtn.addEventListener('click', function() {
-        if (buyBtn.disabled) return;
-        const currentPack = document.querySelector('.pack-card.selected');
-        if (!currentPack) return;
-
-        const packName = currentPack.dataset.name || 'pack';
-        const packPrice = parseInt(currentPack.dataset.price || '0', 10);
-
-        if (walletBalance < packPrice) {
-            alert(`❌ Bạn không đủ tiền!\n\nCần: ${formatMoney(packPrice)}đ\nHiện có: ${formatMoney(walletBalance)}đ\n\nHãy nạp thêm tiền hoặc nhập code trong Cài đặt.`);
-            return;
-        }
-
-        walletBalance -= packPrice;
-        updateWallet(true);
-
-        ownedPacks.push({
-            name: packName,
-            price: packPrice,
-            rate: currentPack.dataset.rate
-        });
-
-        emptyState.style.display = 'none';
-
-        // Cập nhật session
-        const savedUser = loadSession();
-        if (savedUser) {
-            savedUser.wallet = walletBalance;
-            saveSession(savedUser);
-        }
-
-        alert(`🎉 Mua thành công pack "${packName}"!\n\nĐã trừ: ${formatMoney(packPrice)}đ\nSố dư còn lại: ${formatMoney(walletBalance)}đ\n\nBạn hiện có ${ownedPacks.length} pack trong kho.`);
-
-        currentPack.classList.remove('selected');
-        previewSquare.classList.remove('active');
-        previewImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e2538'/%3E%3Ctext x='50' y='58' font-size='28' fill='%234b5568' text-anchor='middle' font-family='Arial'%3E%3F%3C/text%3E%3C/svg%3E";
-        rateName.textContent = '— Chưa chọn —';
-        rateBadgeList.innerHTML = '<div class="placeholder-text" style="padding:0.3rem 0;">Ấn vào pack để xem chi tiết</div>';
-        buyBtn.disabled = true;
-    });
-
-    // ========== KHỞI CHẠY ==========
-    init();
-})();
-</script>
+<!-- Chú thích nhỏ: giao diện tĩnh, không có chức năng thực tế -->
 </body>
 </html>
