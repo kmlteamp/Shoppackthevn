@@ -6,6 +6,8 @@
 <title>Shop Pack Thẻ · Đăng nhập</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=mail" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=payments" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_cart" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=settings" />
 <style>
     * {
         margin: 0;
@@ -116,9 +118,9 @@
         display: none;
         min-height: 100vh;
         background: linear-gradient(145deg, #0b0f1c 0%, #1a1f2f 100%);
+        padding-bottom: 100px;
     }
 
-    /* Thanh trên cùng */
     .topbar {
         background: #0f1422;
         border-bottom: 1px solid #1e2a44;
@@ -154,55 +156,6 @@
         gap: 1rem;
     }
 
-    /* ========== VÍ TIỀN ========== */
-    .wallet {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: linear-gradient(145deg, #1a2237, #141b2e);
-        border: 2px solid #2d3b5a;
-        padding: 0.5rem 1.1rem;
-        border-radius: 40px;
-        box-shadow: 0 8px 18px -8px black, 0 0 0 1px #ffffff08 inset;
-        transition: all 0.2s;
-    }
-
-    .wallet:hover {
-        border-color: #fbbf24;
-        box-shadow: 0 8px 18px -8px black, 0 0 15px #fbbf2433;
-    }
-
-    .wallet .material-symbols-outlined {
-        font-size: 22px;
-        color: #fbbf24;
-        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
-    }
-
-    .wallet-amount {
-        font-weight: 700;
-        font-size: 1.05rem;
-        color: #fde047;
-        letter-spacing: 0.5px;
-        font-variant-numeric: tabular-nums;
-    }
-
-    .wallet-currency {
-        font-size: 0.8rem;
-        color: #94a3b8;
-        font-weight: 500;
-    }
-
-    /* Hiệu ứng khi tiền thay đổi */
-    .wallet.flash {
-        animation: walletFlash 0.6s ease;
-    }
-
-    @keyframes walletFlash {
-        0% { box-shadow: 0 0 0 0 #fbbf24; border-color: #fbbf24; }
-        50% { box-shadow: 0 0 25px 5px #fbbf24aa; border-color: #fbbf24; }
-        100% { box-shadow: 0 0 0 0 #fbbf2400; }
-    }
-
     .logout-btn {
         background: #1e2538;
         color: #cbd5e1;
@@ -221,7 +174,6 @@
         border-color: #fbbf24;
     }
 
-    /* Bố cục */
     .layout {
         display: flex;
         min-height: calc(100vh - 60px);
@@ -312,7 +264,59 @@
         box-shadow: 0 0 10px #22c55e;
     }
 
-    /* ========= NÚT HỘP THƯ HÌNH TRÒN ========= */
+    .money-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #fbbf24, #e6a017);
+        border: 2px solid #0f1422;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 6px 14px -4px #fbbf24cc, 0 0 0 2px #fbbf2433;
+        transition: all 0.25s ease;
+        z-index: 3;
+    }
+
+    .money-badge:hover {
+        transform: scale(1.12) rotate(-6deg);
+        box-shadow: 0 8px 18px -4px #fbbf24, 0 0 15px #fbbf2488;
+    }
+
+    .money-badge:active { transform: scale(0.95); }
+
+    .money-badge .material-symbols-outlined {
+        font-size: 20px;
+        color: #0a0e16;
+        font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .money-tooltip {
+        position: absolute;
+        top: 50%;
+        right: calc(100% + 10px);
+        transform: translateY(-50%);
+        background: #0a0e16;
+        color: #fde047;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 0.3rem 0.7rem;
+        border-radius: 8px;
+        border: 1px solid #fbbf2455;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+        box-shadow: 0 4px 12px #000000aa;
+        z-index: 10;
+    }
+
+    .money-badge:hover .money-tooltip { opacity: 1; }
+
     .mail-btn-wrapper {
         display: flex;
         justify-content: center;
@@ -381,7 +385,6 @@
         50% { transform: scale(1.15); }
     }
 
-    /* Menu sidebar */
     .sidebar-menu {
         display: flex;
         flex-direction: column;
@@ -415,6 +418,22 @@
         box-shadow: 0 0 0 1px #fbbf2422;
     }
 
+    .menu-item .material-symbols-outlined {
+        font-size: 20px;
+        color: inherit;
+        font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+        transition: font-variation-settings 0.25s, transform 0.25s;
+    }
+
+    .menu-item:hover .material-symbols-outlined,
+    .menu-item.active .material-symbols-outlined {
+        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .menu-item:hover .material-symbols-outlined {
+        transform: rotate(60deg);
+    }
+
     /* ==== NỘI DUNG CHÍNH ==== */
     .main-content {
         flex: 1;
@@ -437,7 +456,6 @@
         font-size: 1rem;
     }
 
-    /* ========== THÔNG BÁO CHƯA CÓ PACK ========== */
     .empty-state {
         background: #0f1422;
         border-radius: 2rem;
@@ -482,7 +500,6 @@
         font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
     }
 
-    /* Lưới pack */
     .pack-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -682,6 +699,641 @@
         box-shadow: none;
     }
 
+    /* Nút cửa hàng */
+    .shop-fab {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #fbbf24, #e6a017);
+        border: 3px solid #0b0f1c;
+        color: #0a0e16;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 90;
+        box-shadow: 0 12px 30px -8px #fbbf24cc, 0 0 0 4px #fbbf2422, 0 0 40px #fbbf2433;
+        transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+        animation: shopFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes shopFloat {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50% { transform: translateX(-50%) translateY(-6px); }
+    }
+
+    .shop-fab:hover {
+        animation: none;
+        transform: translateX(-50%) scale(1.12);
+        box-shadow: 0 20px 40px -10px #fbbf24, 0 0 0 6px #fbbf2433, 0 0 60px #fbbf2466;
+    }
+
+    .shop-fab:active { transform: translateX(-50%) scale(0.96); }
+
+    .shop-fab .material-symbols-outlined {
+        font-size: 32px;
+        color: #0a0e16;
+        font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+        transition: transform 0.25s;
+    }
+
+    .shop-fab:hover .material-symbols-outlined { transform: scale(1.1) rotate(-8deg); }
+
+    .shop-fab-label {
+        position: fixed;
+        bottom: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #fbbf24;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        z-index: 90;
+        pointer-events: none;
+        text-shadow: 0 0 8px #fbbf2488;
+        white-space: nowrap;
+    }
+
+    /* ==== MODAL OVERLAY ==== */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 200;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+    }
+
+    .modal-overlay.show {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* ==== HỘP THƯ GÓC TRÁI ==== */
+    .mailbox-panel {
+        position: fixed;
+        top: 80px;
+        left: 20px;
+        width: 300px;
+        background: linear-gradient(145deg, #161c2e, #101624);
+        border-radius: 1.5rem;
+        border: 2px solid #2d3b5a;
+        box-shadow: 0 30px 60px -15px black, 0 0 0 1px #ffffff08 inset;
+        z-index: 210;
+        padding: 1.2rem;
+        transform: translateX(-120%);
+        opacity: 0;
+        transition: all 0.35s cubic-bezier(0.34, 1.3, 0.64, 1);
+    }
+
+    .mailbox-panel.show {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .mailbox-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid #2d3b5a;
+    }
+
+    .mailbox-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #f1f5f9;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .mailbox-title .material-symbols-outlined {
+        color: #fbbf24;
+        font-size: 24px;
+        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .mailbox-sections {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .mailbox-section {
+        background: #1a2237;
+        border-radius: 1rem;
+        padding: 1rem 1.1rem;
+        border: 2px solid #2d3b5a;
+        cursor: pointer;
+        transition: all 0.22s;
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .mailbox-section::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: #fbbf24;
+        transform: scaleY(0);
+        transition: transform 0.25s;
+    }
+
+    .mailbox-section:hover {
+        background: #212b44;
+        border-color: #fbbf2455;
+        transform: translateX(4px);
+    }
+
+    .mailbox-section:hover::before { transform: scaleY(1); }
+
+    .mailbox-section.active {
+        border-color: #fbbf24;
+        background: #252e44;
+        box-shadow: 0 0 0 1px #fbbf2422, 0 8px 20px -8px black;
+    }
+
+    .mailbox-section.active::before { transform: scaleY(1); }
+
+    .section-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .section-icon.notif {
+        background: linear-gradient(145deg, #3b82f6, #2563eb);
+        box-shadow: 0 6px 14px -4px #3b82f6aa;
+    }
+
+    .section-icon.gift {
+        background: linear-gradient(145deg, #ec4899, #db2777);
+        box-shadow: 0 6px 14px -4px #ec4899aa;
+    }
+
+    .section-icon .material-symbols-outlined {
+        color: white;
+        font-size: 24px;
+        font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .section-info { flex: 1; }
+
+    .section-name {
+        font-weight: 700;
+        color: #f1f5f9;
+        font-size: 1rem;
+        margin-bottom: 0.15rem;
+    }
+
+    .section-desc {
+        font-size: 0.78rem;
+        color: #94a3b8;
+    }
+
+    .section-badge {
+        background: #ef4444;
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 0.2rem 0.55rem;
+        border-radius: 40px;
+        min-width: 22px;
+        text-align: center;
+        border: 2px solid #1a2237;
+        box-shadow: 0 0 8px #ef444488;
+    }
+
+    /* ==== KHUNG NỘI DUNG Ở GIỮA ==== */
+    .mail-content-panel {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.85);
+        width: 90%;
+        max-width: 620px;
+        max-height: 80vh;
+        background: linear-gradient(145deg, #161c2e, #101624);
+        border-radius: 1.8rem;
+        border: 2px solid #2d3b5a;
+        box-shadow: 0 40px 80px -20px black, 0 0 0 1px #ffffff08 inset, 0 0 60px #fbbf2422;
+        z-index: 220;
+        padding: 1.8rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .mail-content-panel.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .content-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #2d3b5a;
+        gap: 1rem;
+    }
+
+    .content-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        color: #f1f5f9;
+    }
+
+    .content-title .material-symbols-outlined {
+        font-size: 28px;
+        color: #fbbf24;
+        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* Nút X đóng - BÊN PHẢI */
+    .content-close-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #1e2538;
+        border: 2px solid #334155;
+        color: #cbd5e1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.22s;
+        flex-shrink: 0;
+    }
+
+    .content-close-btn:hover {
+        background: #ef4444;
+        border-color: #ef4444;
+        color: white;
+        transform: rotate(90deg) scale(1.05);
+        box-shadow: 0 0 20px #ef444488;
+    }
+
+    .content-close-btn .material-symbols-outlined {
+        font-size: 22px;
+        font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .content-body {
+        overflow-y: auto;
+        flex: 1;
+        padding-right: 0.3rem;
+    }
+
+    .content-body::-webkit-scrollbar { width: 6px; }
+    .content-body::-webkit-scrollbar-track { background: #1a2237; border-radius: 10px; }
+    .content-body::-webkit-scrollbar-thumb { background: #fbbf2455; border-radius: 10px; }
+    .content-body::-webkit-scrollbar-thumb:hover { background: #fbbf24aa; }
+
+    /* Item thông báo */
+    .notif-item {
+        background: #1a2237;
+        border-radius: 1rem;
+        padding: 1rem 1.1rem;
+        margin-bottom: 0.8rem;
+        border-left: 4px solid #3b82f6;
+        display: flex;
+        gap: 0.9rem;
+        align-items: flex-start;
+    }
+
+    .notif-item .material-symbols-outlined {
+        color: #3b82f6;
+        font-size: 22px;
+        flex-shrink: 0;
+        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .notif-item-text {
+        color: #cbd5e1;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .notif-item-text strong {
+        color: #f1f5f9;
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+
+    .notif-item-time {
+        color: #64748b;
+        font-size: 0.72rem;
+        margin-top: 0.3rem;
+    }
+
+    /* Item quà tặng */
+    .gift-item {
+        background: #1a2237;
+        border-radius: 1rem;
+        padding: 1rem 1.1rem;
+        margin-bottom: 0.8rem;
+        border-left: 4px solid #ec4899;
+        display: flex;
+        gap: 0.9rem;
+        align-items: center;
+    }
+
+    .gift-item-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #ec4899, #db2777);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 1.5rem;
+        box-shadow: 0 6px 14px -4px #ec4899aa;
+    }
+
+    .gift-item-info { flex: 1; }
+
+    .gift-item-name {
+        color: #f1f5f9;
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 0.15rem;
+    }
+
+    .gift-item-desc {
+        color: #94a3b8;
+        font-size: 0.8rem;
+    }
+
+    .gift-claim-btn {
+        background: linear-gradient(145deg, #ec4899, #db2777);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 40px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 6px 14px -6px #ec4899cc;
+        white-space: nowrap;
+    }
+
+    .gift-claim-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px -8px #ec4899;
+    }
+
+    .gift-claim-btn.claimed {
+        background: #334155;
+        color: #94a3b8;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+
+    /* ==== SETTINGS MODAL ==== */
+    .settings-panel {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.85);
+        width: 90%;
+        max-width: 480px;
+        background: linear-gradient(145deg, #161c2e, #101624);
+        border-radius: 1.8rem;
+        border: 2px solid #2d3b5a;
+        box-shadow: 0 40px 80px -20px black, 0 0 0 1px #ffffff08 inset, 0 0 60px #fbbf2422;
+        z-index: 230;
+        padding: 1.8rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
+        display: flex;
+        flex-direction: column;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+
+    .settings-panel.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .settings-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #2d3b5a;
+        gap: 1rem;
+    }
+
+    .settings-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        color: #f1f5f9;
+    }
+
+    .settings-title .material-symbols-outlined {
+        font-size: 28px;
+        color: #fbbf24;
+        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .settings-close-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #1e2538;
+        border: 2px solid #334155;
+        color: #cbd5e1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.22s;
+        flex-shrink: 0;
+    }
+
+    .settings-close-btn:hover {
+        background: #ef4444;
+        border-color: #ef4444;
+        color: white;
+        transform: rotate(90deg) scale(1.05);
+        box-shadow: 0 0 20px #ef444488;
+    }
+
+    .settings-close-btn .material-symbols-outlined {
+        font-size: 22px;
+        font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* Nhập code */
+    .code-input-label {
+        color: #94a3b8;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+        margin-bottom: 0.7rem;
+        display: block;
+    }
+
+    .code-input {
+        width: 100%;
+        background: #1a2237;
+        border: 2px solid #334155;
+        border-radius: 0.9rem;
+        padding: 1rem 1.1rem;
+        color: #f1f5f9;
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-align: center;
+        text-transform: uppercase;
+        font-family: 'Courier New', monospace;
+        outline: none;
+        transition: all 0.25s;
+        margin-bottom: 1rem;
+    }
+
+    .code-input::placeholder {
+        color: #4b5568;
+        letter-spacing: 2px;
+        font-weight: 500;
+        text-transform: none;
+    }
+
+    .code-input:focus {
+        border-color: #fbbf24;
+        box-shadow: 0 0 0 4px #fbbf2422, 0 0 20px #fbbf2433;
+        background: #1e293b;
+    }
+
+    /* Nút xác nhận */
+    .confirm-btn {
+        width: 100%;
+        padding: 0.95rem;
+        border: none;
+        border-radius: 60px;
+        background: linear-gradient(145deg, #fbbf24, #e6a017);
+        color: #0a0e16;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.22s;
+        box-shadow: 0 10px 20px -8px #fbbf24cc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1.3rem;
+    }
+
+    .confirm-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 28px -8px #fbbf24;
+        background: linear-gradient(145deg, #ffd966, #fbbf24);
+    }
+
+    .confirm-btn:active { transform: scale(0.97); }
+
+    .confirm-btn .material-symbols-outlined {
+        font-size: 20px;
+        font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* Hướng dẫn */
+    .guide-box {
+        background: #1a2237;
+        border-radius: 1rem;
+        padding: 1.1rem 1.2rem;
+        border-left: 4px solid #3b82f6;
+        margin-bottom: 1rem;
+    }
+
+    .guide-title {
+        color: #60a5fa;
+        font-size: 0.88rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.6rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .guide-title .material-symbols-outlined {
+        font-size: 18px;
+        font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .guide-text {
+        color: #cbd5e1;
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+
+    .guide-text ol {
+        padding-left: 1.2rem;
+        margin-top: 0.4rem;
+    }
+
+    .guide-text ol li {
+        margin-bottom: 0.3rem;
+    }
+
+    /* Chữ nhỏ fanpage */
+    .fanpage-note {
+        text-align: center;
+        color: #64748b;
+        font-size: 0.72rem;
+        font-style: italic;
+        padding-top: 0.8rem;
+        border-top: 1px dashed #2d3b5a;
+        line-height: 1.5;
+    }
+
+    .fanpage-note strong {
+        color: #fbbf24;
+        font-weight: 700;
+    }
+
     /* Responsive */
     @media (max-width: 850px) {
         .layout { flex-direction: column; }
@@ -707,17 +1359,10 @@
             text-align: left;
         }
 
-        .avatar-square {
-            width: 80px;
-            height: 80px;
-            margin: 0;
-        }
-
-        .avatar-circle {
-            width: 60px;
-            height: 60px;
-            font-size: 1.6rem;
-        }
+        .avatar-square { width: 80px; height: 80px; margin: 0; }
+        .avatar-circle { width: 60px; height: 60px; font-size: 1.6rem; }
+        .money-badge { width: 30px; height: 30px; top: 5px; right: 5px; }
+        .money-badge .material-symbols-outlined { font-size: 16px; }
 
         .mail-btn-wrapper {
             margin-top: 0;
@@ -744,15 +1389,28 @@
         .topbar { padding: 0.7rem 1rem; gap: 0.5rem; }
         .topbar-logo { font-size: 1rem; }
         .topbar-logo span { font-size: 1.2rem; }
-        .wallet { padding: 0.4rem 0.8rem; }
-        .wallet-amount { font-size: 0.9rem; }
         .logout-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
+
+        .shop-fab { width: 58px; height: 58px; bottom: 20px; }
+        .shop-fab .material-symbols-outlined { font-size: 26px; }
+        #mainApp { padding-bottom: 90px; }
+
+        .mailbox-panel {
+            left: 10px;
+            right: 10px;
+            width: auto;
+            top: 70px;
+        }
     }
 
     @media (max-width: 500px) {
         .main-content { padding: 1.2rem 1rem; }
         .main-content h1 { font-size: 1.5rem; }
         .profile-name { font-size: 1rem; }
+        .mail-content-panel { padding: 1.3rem; }
+        .content-title { font-size: 1.1rem; }
+        .settings-panel { padding: 1.3rem; }
+        .settings-title { font-size: 1.15rem; }
     }
 </style>
 </head>
@@ -775,12 +1433,6 @@
             <span>🃏</span> PACK THẺ ẢO DIỆU
         </div>
         <div class="topbar-right">
-            <!-- ⭐ VÍ TIỀN ⭐ -->
-            <div class="wallet" id="wallet">
-                <span class="material-symbols-outlined">payments</span>
-                <span class="wallet-amount" id="walletAmount">50.000</span>
-                <span class="wallet-currency">đ</span>
-            </div>
             <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
         </div>
     </header>
@@ -792,6 +1444,10 @@
                 <div class="avatar-square">
                     <div class="avatar-circle" id="avatarCircle">?</div>
                     <div class="status-dot"></div>
+                    <div class="money-badge" id="moneyBadge" title="Số dư ví">
+                        <span class="material-symbols-outlined">payments</span>
+                        <span class="money-tooltip" id="moneyTooltip">50.000đ</span>
+                    </div>
                 </div>
                 <div>
                     <div class="profile-name" id="profileName">Người dùng</div>
@@ -799,7 +1455,6 @@
                 </div>
             </div>
 
-            <!-- Nút hộp thư -->
             <div class="mail-btn-wrapper">
                 <button class="mail-btn" id="mailBtn" title="Hộp thư">
                     <span class="material-symbols-outlined">mail</span>
@@ -811,7 +1466,10 @@
                 <div class="menu-item active">🏠 Trang chủ</div>
                 <div class="menu-item">📦 Kho pack</div>
                 <div class="menu-item">🏆 Bộ sưu tập</div>
-                <div class="menu-item">⚙️ Cài đặt</div>
+                <div class="menu-item" id="settingsMenu">
+                    <span class="material-symbols-outlined">settings</span>
+                    Cài đặt
+                </div>
             </nav>
         </aside>
 
@@ -820,7 +1478,6 @@
             <h1>✨ Cửa hàng Pack Thẻ</h1>
             <p class="subtitle">Mua pack để bắt đầu sưu tầm thẻ</p>
 
-            <!-- ========== KHI CHƯA CÓ PACK ========== -->
             <div class="empty-state" id="emptyState">
                 <div class="empty-icon">📦</div>
                 <h2>Bạn chưa có Pack Thẻ nào</h2>
@@ -828,7 +1485,6 @@
                 <span class="material-symbols-outlined">payments</span>
             </div>
 
-            <!-- ========== LƯỚI PACK ĐỂ MUA ========== -->
             <div class="pack-grid" id="packGrid">
                 <div class="pack-card" data-pack="pack1" data-name="Khởi Đầu" data-price="50000" data-rate="Thường: 70% · Hiếm: 25% · Sử thi: 4.5% · Huyền thoại: 0.5%">
                     <img class="pack-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232d3748'/%3E%3Cpath d='M30 40 L70 40 L70 70 L50 85 L30 70 Z' fill='%23fbbf24' opacity='0.8'/%3E%3Ccircle cx='50' cy='45' r='12' fill='%23ffd966'/%3E%3Ctext x='50' y='92' font-size='12' fill='%23a0aec0' text-anchor='middle' font-family='Arial'%3EPACK I%3C/text%3E%3C/svg%3E" alt="Pack Khởi Đầu">
@@ -852,7 +1508,6 @@
                 </div>
             </div>
 
-            <!-- Khung xem trước pack + tỉ lệ -->
             <div class="reveal-panel" id="revealPanel">
                 <div class="preview-square" id="previewSquare">
                     <img id="previewImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e2538'/%3E%3Ctext x='50' y='58' font-size='28' fill='%234b5568' text-anchor='middle' font-family='Arial'%3E%3F%3C/text%3E%3C/svg%3E" alt="Chưa chọn pack">
@@ -871,13 +1526,115 @@
             </div>
         </main>
     </div>
+
+    <!-- Nút cửa hàng -->
+    <button class="shop-fab" id="shopFab" title="Cửa hàng">
+        <span class="material-symbols-outlined">shopping_cart</span>
+        <span class="shop-fab-tooltip">Cửa hàng Pack</span>
+    </button>
+    <div class="shop-fab-label">Cửa Hàng</div>
+</div>
+
+<!-- Overlay chung -->
+<div class="modal-overlay" id="modalOverlay"></div>
+
+<!-- ==== HỘP THƯ GÓC TRÁI ==== -->
+<div class="mailbox-panel" id="mailboxPanel">
+    <div class="mailbox-header">
+        <div class="mailbox-title">
+            <span class="material-symbols-outlined">mail</span>
+            Hộp Thư
+        </div>
+    </div>
+    <div class="mailbox-sections">
+        <div class="mailbox-section" data-section="notif">
+            <div class="section-icon notif">
+                <span class="material-symbols-outlined">notifications</span>
+            </div>
+            <div class="section-info">
+                <div class="section-name">Thông báo</div>
+                <div class="section-desc">Tin tức &amp; cập nhật</div>
+            </div>
+            <span class="section-badge">3</span>
+        </div>
+        <div class="mailbox-section" data-section="gift">
+            <div class="section-icon gift">
+                <span class="material-symbols-outlined">redeem</span>
+            </div>
+            <div class="section-info">
+                <div class="section-name">Quà tặng</div>
+                <div class="section-desc">Nhận thưởng miễn phí</div>
+            </div>
+            <span class="section-badge">2</span>
+        </div>
+    </div>
+</div>
+
+<!-- ==== KHUNG NỘI DUNG Ở GIỮA ==== -->
+<div class="mail-content-panel" id="mailContentPanel">
+    <div class="content-header">
+        <div class="content-title" id="contentTitle">
+            <span class="material-symbols-outlined">notifications</span>
+            <span id="contentTitleText">Thông báo</span>
+        </div>
+        <button class="content-close-btn" id="contentCloseBtn" title="Đóng">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+    <div class="content-body" id="contentBody">
+        <!-- Nội dung sẽ được JS render -->
+    </div>
+</div>
+
+<!-- ==== SETTINGS MODAL ==== -->
+<div class="settings-panel" id="settingsPanel">
+    <div class="settings-header">
+        <div class="settings-title">
+            <span class="material-symbols-outlined">settings</span>
+            Cài đặt
+        </div>
+        <button class="settings-close-btn" id="settingsCloseBtn" title="Đóng">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+
+    <label class="code-input-label">Nhập code</label>
+    <input type="text" class="code-input" id="codeInput" placeholder="Nhập code tại đây..." maxlength="20" autocomplete="off">
+
+    <button class="confirm-btn" id="confirmCodeBtn">
+        <span class="material-symbols-outlined">check_circle</span>
+        XÁC NHẬN
+    </button>
+
+    <div class="guide-box">
+        <div class="guide-title">
+            <span class="material-symbols-outlined">help</span>
+            Hướng dẫn nhận code
+        </div>
+        <div class="guide-text">
+            <ol>
+                <li>Truy cập vào fanpage Admin của shop</li>
+                <li>Nhấn <strong>Like</strong> và <strong>Theo dõi</strong> fanpage</li>
+                <li>Nhấn <strong>Share</strong> bài viết sự kiện ở chế độ công khai</li>
+                <li>Nhắn tin cho Admin để nhận code</li>
+                <li>Nhập code vào ô phía trên và nhấn <strong>XÁC NHẬN</strong></li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="fanpage-note">
+        Tham gia <strong>Fanpage Admin</strong> để nhận code
+    </div>
 </div>
 
 <script>
 (function() {
+    // ========== LOCALSTORAGE KEY ==========
+    const STORAGE_KEY = 'packTheLoggedInUser';
+
     // ========== BIẾN TOÀN CỤC ==========
-    let walletBalance = 50000; // 50.000đ ban đầu
-    let ownedPacks = []; // Danh sách pack đã sở hữu (ban đầu rỗng)
+    let walletBalance = 50000;
+    let ownedPacks = [];
 
     // ========== LẤY PHẦN TỬ ==========
     const loginScreen = document.getElementById('loginScreen');
@@ -887,8 +1644,8 @@
     const avatarCircle = document.getElementById('avatarCircle');
     const profileName = document.getElementById('profileName');
     const profileId = document.getElementById('profileId');
-    const walletEl = document.getElementById('wallet');
-    const walletAmount = document.getElementById('walletAmount');
+    const walletEl = document.getElementById('moneyBadge');
+    const walletAmount = document.getElementById('moneyTooltip');
     const emptyState = document.getElementById('emptyState');
     const packCards = document.querySelectorAll('.pack-card');
     const previewSquare = document.getElementById('previewSquare');
@@ -898,6 +1655,24 @@
     const buyBtn = document.getElementById('buyBtn');
     const mailBtn = document.getElementById('mailBtn');
     const mailBadge = document.getElementById('mailBadge');
+    const shopFab = document.getElementById('shopFab');
+
+    // Hộp thư
+    const modalOverlay = document.getElementById('modalOverlay');
+    const mailboxPanel = document.getElementById('mailboxPanel');
+    const mailContentPanel = document.getElementById('mailContentPanel');
+    const contentCloseBtn = document.getElementById('contentCloseBtn');
+    const contentTitle = document.getElementById('contentTitle');
+    const contentTitleText = document.getElementById('contentTitleText');
+    const contentBody = document.getElementById('contentBody');
+    const mailboxSections = document.querySelectorAll('.mailbox-section');
+
+    // Settings
+    const settingsMenu = document.getElementById('settingsMenu');
+    const settingsPanel = document.getElementById('settingsPanel');
+    const settingsCloseBtn = document.getElementById('settingsCloseBtn');
+    const codeInput = document.getElementById('codeInput');
+    const confirmCodeBtn = document.getElementById('confirmCodeBtn');
 
     // ========== HÀM ĐỊNH DẠNG TIỀN ==========
     function formatMoney(amount) {
@@ -906,15 +1681,15 @@
 
     // ========== CẬP NHẬT VÍ ==========
     function updateWallet(animate = true) {
-        walletAmount.textContent = formatMoney(walletBalance);
+        walletAmount.textContent = formatMoney(walletBalance) + 'đ';
         if (animate) {
             walletEl.classList.remove('flash');
-            void walletEl.offsetWidth; // Trigger reflow
+            void walletEl.offsetWidth;
             walletEl.classList.add('flash');
         }
     }
 
-    // ========== RANDOM NAME/ID ==========
+    // ========== RANDOM ==========
     function generateRandomId() {
         const chars = 'ABCDEF0123456789';
         let id = '';
@@ -929,45 +1704,270 @@
 
     function getInitial(name) { return name.charAt(0).toUpperCase(); }
 
-    // ========== ĐĂNG NHẬP ==========
-    loginBtn.addEventListener('click', function() {
-        const randomName = generateRandomName();
-        const randomId = generateRandomId();
-        profileName.textContent = randomName;
-        profileId.textContent = randomId;
-        avatarCircle.textContent = getInitial(randomName);
+    // ========== LƯU / ĐỌC / XÓA SESSION ==========
+    function saveSession(user) {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+        } catch (e) {
+            console.warn('Không thể lưu session:', e);
+        }
+    }
+
+    function loadSession() {
+        try {
+            const data = localStorage.getItem(STORAGE_KEY);
+            return data ? JSON.parse(data) : null;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function clearSession() {
+        try {
+            localStorage.removeItem(STORAGE_KEY);
+        } catch (e) {}
+    }
+
+    // ========== ÁP DỤNG USER VÀO UI ==========
+    function applyUser(user) {
+        profileName.textContent = user.name;
+        profileId.textContent = user.id;
+        avatarCircle.textContent = getInitial(user.name);
+        walletBalance = user.wallet !== undefined ? user.wallet : 50000;
+        updateWallet(false);
+    }
+
+    // ========== HIỆN MAIN APP ==========
+    function showMainApp() {
         loginScreen.style.display = 'none';
         mainApp.style.display = 'block';
         window.scrollTo(0, 0);
+    }
 
-        // Reset tiền & pack khi đăng nhập mới
-        walletBalance = 50000;
-        ownedPacks = [];
-        updateWallet(false);
+    // ========== HIỆN LOGIN ==========
+    function showLogin() {
+        mainApp.style.display = 'none';
+        loginScreen.style.display = 'flex';
+    }
+
+    // ========== ĐĂNG NHẬP ==========
+    loginBtn.addEventListener('click', function() {
+        const user = {
+            name: generateRandomName(),
+            id: generateRandomId(),
+            wallet: 50000,
+            loginAt: Date.now()
+        };
+
+        // Lưu session
+        saveSession(user);
+
+        // Áp dụng UI
+        applyUser(user);
+        showMainApp();
     });
 
     // ========== ĐĂNG XUẤT ==========
     logoutBtn.addEventListener('click', function() {
-        mainApp.style.display = 'none';
-        loginScreen.style.display = 'flex';
+        clearSession();
+        showLogin();
+
+        // Reset UI
         packCards.forEach(c => c.classList.remove('selected'));
         previewSquare.classList.remove('active');
         previewImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e2538'/%3E%3Ctext x='50' y='58' font-size='28' fill='%234b5568' text-anchor='middle' font-family='Arial'%3E%3F%3C/text%3E%3C/svg%3E";
         rateName.textContent = '— Chưa chọn —';
         rateBadgeList.innerHTML = '<div class="placeholder-text" style="padding:0.3rem 0;">Ấn vào pack để xem chi tiết</div>';
         buyBtn.disabled = true;
-        // Hiện lại empty state
         emptyState.style.display = 'flex';
+        walletBalance = 50000;
+        updateWallet(false);
     });
 
+    // ========== KHỞI TẠO - KIỂM TRA SESSION KHI VÀO WEB ==========
+    function init() {
+        const savedUser = loadSession();
+        if (savedUser && savedUser.name && savedUser.id) {
+            // Có session → vào thẳng main app
+            applyUser(savedUser);
+            showMainApp();
+        } else {
+            // Chưa đăng nhập → hiện login
+            showLogin();
+        }
+    }
+
     // ========== HỘP THƯ ==========
+    const notifData = [
+        { title: 'Chào mừng đến với Shop Pack!', desc: 'Bạn được tặng 50.000đ khởi đầu. Chúc bạn may mắn!', time: 'Vừa xong', icon: 'celebration' },
+        { title: 'Cập nhật phiên bản mới', desc: 'Đã thêm pack "Thần Thoại" với tỉ lệ ra Huyền Thoại lên tới 25%.', time: '2 giờ trước', icon: 'new_releases' },
+        { title: 'Bảo trì hệ thống', desc: 'Hệ thống sẽ bảo trì vào 2h sáng mai. Mong quý khách thông cảm.', time: '1 ngày trước', icon: 'build' }
+    ];
+
+    const giftData = [
+        { name: 'Pack Khởi Đầu Miễn Phí', desc: 'Nhận 1 pack Khởi Đầu miễn phí', icon: '🎁', claimed: false },
+        { name: 'Thưởng 20.000đ', desc: 'Cộng thêm 20.000đ vào ví', icon: '💰', claimed: false }
+    ];
+
+    function renderNotif() {
+        contentTitle.innerHTML = '<span class="material-symbols-outlined">notifications</span><span id="contentTitleText">Thông báo</span>';
+        let html = '';
+        notifData.forEach(item => {
+            html += `
+                <div class="notif-item">
+                    <span class="material-symbols-outlined">${item.icon}</span>
+                    <div>
+                        <div class="notif-item-text">
+                            <strong>${item.title}</strong>
+                            ${item.desc}
+                        </div>
+                        <div class="notif-item-time">${item.time}</div>
+                    </div>
+                </div>
+            `;
+        });
+        contentBody.innerHTML = html;
+    }
+
+    function renderGift() {
+        contentTitle.innerHTML = '<span class="material-symbols-outlined">redeem</span><span id="contentTitleText">Quà tặng</span>';
+        let html = '';
+        giftData.forEach((item, index) => {
+            html += `
+                <div class="gift-item">
+                    <div class="gift-item-icon">${item.icon}</div>
+                    <div class="gift-item-info">
+                        <div class="gift-item-name">${item.name}</div>
+                        <div class="gift-item-desc">${item.desc}</div>
+                    </div>
+                    <button class="gift-claim-btn ${item.claimed ? 'claimed' : ''}" data-gift-index="${index}" ${item.claimed ? 'disabled' : ''}>
+                        ${item.claimed ? 'Đã nhận' : 'Nhận'}
+                    </button>
+                </div>
+            `;
+        });
+        contentBody.innerHTML = html;
+
+        // Gắn sự kiện cho nút nhận
+        document.querySelectorAll('.gift-claim-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const idx = parseInt(this.dataset.giftIndex);
+                if (giftData[idx].claimed) return;
+                giftData[idx].claimed = true;
+
+                // Cộng tiền nếu là quà tiền
+                if (giftData[idx].name.includes('Thưởng')) {
+                    walletBalance += 20000;
+                    updateWallet(true);
+                }
+
+                alert(`🎉 Bạn đã nhận: ${giftData[idx].name}`);
+                renderGift();
+            });
+        });
+    }
+
+    // Mở hộp thư
     mailBtn.addEventListener('click', function() {
-        const count = mailBadge ? mailBadge.textContent : '0';
-        alert(`📬 HỘP THƯ\n\nBạn có ${count} tin nhắn mới!\n(Đây là demo chức năng hộp thư.)`);
+        modalOverlay.classList.add('show');
+        mailboxPanel.classList.add('show');
+        // Reset active section
+        mailboxSections.forEach(s => s.classList.remove('active'));
+        // Ẩn badge
         if (mailBadge) mailBadge.style.display = 'none';
     });
 
-    // ========== PACK: HIỂN THỊ TỈ LỆ ==========
+    // Ấn vào section
+    mailboxSections.forEach(section => {
+        section.addEventListener('click', function() {
+            const type = this.dataset.section;
+            mailboxSections.forEach(s => s.classList.remove('active'));
+            this.classList.add('active');
+
+            if (type === 'notif') renderNotif();
+            else if (type === 'gift') renderGift();
+
+            mailContentPanel.classList.add('show');
+        });
+    });
+
+    // Đóng nội dung
+    contentCloseBtn.addEventListener('click', function() {
+        mailContentPanel.classList.remove('show');
+        mailboxSections.forEach(s => s.classList.remove('active'));
+    });
+
+    // Đóng overlay = đóng tất cả
+    modalOverlay.addEventListener('click', function() {
+        mailboxPanel.classList.remove('show');
+        mailContentPanel.classList.remove('show');
+        settingsPanel.classList.remove('show');
+        modalOverlay.classList.remove('show');
+        mailboxSections.forEach(s => s.classList.remove('active'));
+    });
+
+    // ========== SETTINGS ==========
+    settingsMenu.addEventListener('click', function() {
+        modalOverlay.classList.add('show');
+        settingsPanel.classList.add('show');
+        codeInput.value = '';
+        codeInput.focus();
+    });
+
+    settingsCloseBtn.addEventListener('click', function() {
+        settingsPanel.classList.remove('show');
+        modalOverlay.classList.remove('show');
+    });
+
+    // Xác nhận code
+    confirmCodeBtn.addEventListener('click', function() {
+        const code = codeInput.value.trim().toUpperCase();
+        if (!code) {
+            alert('⚠️ Vui lòng nhập code!');
+            codeInput.focus();
+            return;
+        }
+
+        // Demo: các code hợp lệ
+        const validCodes = {
+            'ADMIN2025': 50000,
+            'PACK50K': 50000,
+            'WELCOME': 20000,
+            'FANPAGE': 100000,
+            'GIFT100': 100000
+        };
+
+        if (validCodes[code]) {
+            walletBalance += validCodes[code];
+            updateWallet(true);
+            alert(`✅ Nhập code thành công!\n\nBạn nhận được: ${formatMoney(validCodes[code])}đ\nSố dư mới: ${formatMoney(walletBalance)}đ`);
+            codeInput.value = '';
+
+            // Cập nhật session
+            const savedUser = loadSession();
+            if (savedUser) {
+                savedUser.wallet = walletBalance;
+                saveSession(savedUser);
+            }
+        } else {
+            alert('❌ Code không hợp lệ!\n\nHãy tham gia Fanpage Admin để nhận code chính xác.');
+            codeInput.value = '';
+            codeInput.focus();
+        }
+    });
+
+    // Enter để xác nhận
+    codeInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') confirmCodeBtn.click();
+    });
+
+    // ========== NÚT CỬA HÀNG ==========
+    shopFab.addEventListener('click', function() {
+        // Cuộn xuống phần pack
+        document.querySelector('.pack-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ========== PACK ==========
     function renderRateBadges(rateString) {
         const parts = rateString.split('·').map(s => s.trim());
         if (!parts.length) return '<div class="placeholder-text">Không có dữ liệu</div>';
@@ -1015,30 +2015,31 @@
         const packName = currentPack.dataset.name || 'pack';
         const packPrice = parseInt(currentPack.dataset.price || '0', 10);
 
-        // Kiểm tra đủ tiền
         if (walletBalance < packPrice) {
-            alert(`❌ Bạn không đủ tiền!\n\nCần: ${formatMoney(packPrice)}đ\nHiện có: ${formatMoney(walletBalance)}đ\n\nHãy nạp thêm tiền hoặc chọn pack rẻ hơn.`);
+            alert(`❌ Bạn không đủ tiền!\n\nCần: ${formatMoney(packPrice)}đ\nHiện có: ${formatMoney(walletBalance)}đ\n\nHãy nạp thêm tiền hoặc nhập code trong Cài đặt.`);
             return;
         }
 
-        // Trừ tiền
         walletBalance -= packPrice;
         updateWallet(true);
 
-        // Thêm vào danh sách sở hữu
         ownedPacks.push({
             name: packName,
             price: packPrice,
             rate: currentPack.dataset.rate
         });
 
-        // Ẩn empty state
         emptyState.style.display = 'none';
 
-        // Thông báo
+        // Cập nhật session
+        const savedUser = loadSession();
+        if (savedUser) {
+            savedUser.wallet = walletBalance;
+            saveSession(savedUser);
+        }
+
         alert(`🎉 Mua thành công pack "${packName}"!\n\nĐã trừ: ${formatMoney(packPrice)}đ\nSố dư còn lại: ${formatMoney(walletBalance)}đ\n\nBạn hiện có ${ownedPacks.length} pack trong kho.`);
 
-        // Reset lựa chọn
         currentPack.classList.remove('selected');
         previewSquare.classList.remove('active');
         previewImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e2538'/%3E%3Ctext x='50' y='58' font-size='28' fill='%234b5568' text-anchor='middle' font-family='Arial'%3E%3F%3C/text%3E%3C/svg%3E";
@@ -1047,8 +2048,8 @@
         buyBtn.disabled = true;
     });
 
-    // Khởi tạo ví ban đầu
-    updateWallet(false);
+    // ========== KHỞI CHẠY ==========
+    init();
 })();
 </script>
 </body>
